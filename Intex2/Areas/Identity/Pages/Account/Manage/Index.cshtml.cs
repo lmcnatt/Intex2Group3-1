@@ -29,12 +29,6 @@ namespace Intex2.Areas.Identity.Pages.Account.Manage
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
-        public string Username { get; set; }
-
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [TempData]
         public string StatusMessage { get; set; }
 
@@ -58,24 +52,17 @@ namespace Intex2.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
-
-            [Display(Name = "First name")]
-            public string FirstName { get; set; }
-
-            [Display(Name = "Last name")]
-            public string LastName { get; set; }
+            public string Username { get; set; }
         }
 
         private async Task LoadAsync(IdentityUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-
-            Username = userName;
-
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Username = userName
             };
         }
 
@@ -112,6 +99,17 @@ namespace Intex2.Areas.Identity.Pages.Account.Manage
                 if (!setPhoneResult.Succeeded)
                 {
                     StatusMessage = "Unexpected error when trying to set phone number.";
+                    return RedirectToPage();
+                }
+            }
+
+            var username = await _userManager.GetUserNameAsync(user);
+            if (Input.Username != username)
+            {
+                var setUsername = await _userManager.SetUserNameAsync(user, Input.Username);
+                if (!setUsername.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to set username.";
                     return RedirectToPage();
                 }
             }

@@ -14,6 +14,7 @@ builder.Services.AddDbContext<IntexDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<IntexDbContext>();
 
 builder.Services.AddScoped<IIntex2Repository, EFIntex2Repository>();
