@@ -1,0 +1,14 @@
+﻿@model Product
+
+<div class="card m-1 p-1">
+    <ul>
+        <li>Product Type: @Model.ProductType</li>
+        <li>Product Name: @Model.ProductName</li>
+    </ul>
+
+    <form id="@Model.ProductId" method="post" asp-page="/Cart">
+        <input type="hidden" asp-for="@Model.ProductId">
+        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+        <button type="submit" class="btn btn-success btn-sm float-end">Buy</button>
+    </form>
+</div>
