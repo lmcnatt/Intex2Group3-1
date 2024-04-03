@@ -14,8 +14,8 @@ builder.Services.AddDbContext<IntexDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-// builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>().AddEntityFrameworkStores<IntexDbContext>();
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddRoles<IdentityRole>().AddEntityFrameworkStores<IntexDbContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>().AddEntityFrameworkStores<IntexDbContext>();
+// builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddRoles<IdentityRole>().AddEntityFrameworkStores<IntexDbContext>();
 
 builder.Services.AddScoped<IIntex2Repository, EFIntex2Repository>();
 builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
@@ -64,11 +64,11 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapControllerRoute("roles", "Role", new { Controller = "Role", Action = "Index" });
 app.MapControllerRoute("pagenumandtype", "{productType}/Page{pageNum}", new { Controller = "Home", Action = "Products" });
 app.MapControllerRoute("page", "Page/{pageNum}", new { Controller = "Home", Action = "Products", pageNum = 1 });
 app.MapControllerRoute("projectType", "{productType}", new { Controller = "Home", Action = "Products", pageNum = 1 });
 app.MapControllerRoute("pagination", "Products/Page{pageNum}", new { Controller = "Home", Action = "Products", pageNum = 1 });
-app.MapControllerRoute("roles", "Role", new { Controller = "Role", Action = "Index" });
 app.MapDefaultControllerRoute();
 
 app.MapRazorPages();
