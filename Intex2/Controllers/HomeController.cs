@@ -50,7 +50,7 @@ namespace Intex2.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Student")]
         public IActionResult Secrets()
         {
             return View();

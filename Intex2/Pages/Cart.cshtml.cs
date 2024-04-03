@@ -22,7 +22,7 @@ namespace Intex2.Pages
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
-            //Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
 
         public IActionResult OnPost(int productId, string returnUrl)
