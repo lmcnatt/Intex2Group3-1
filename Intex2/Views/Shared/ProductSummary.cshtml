@@ -5,7 +5,12 @@
         <span class="badge rounded-pill bg-primary text-white float-end"><small>@Model.Price.ToString("c")</small></span>
     </h4>
     <ul>
-        <li>Product Type: @Model.Category</li>
+        <li>Product Type: 
+            @foreach (ProductCategory c in Model.ProductCategories)
+            {
+                @c.Category.CategoryName 
+            }
+        </li>
         <li>Product Name: @Model.Name</li>
         <li>Product Description: @Model.Description</li>
     </ul>

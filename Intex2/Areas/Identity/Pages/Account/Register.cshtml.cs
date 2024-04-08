@@ -119,10 +119,19 @@ namespace Intex2.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(Customer customer, string returnUrl = null)
         {
+            foreach (var state in ModelState.Values)
+            {
+                foreach (var error in state.Errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+            }
+
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                Console.WriteLine("We made it to the valid model state");
                 var user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
@@ -136,7 +145,7 @@ namespace Intex2.Areas.Identity.Pages.Account
                 var gender = Gender;
                 var age = Age;
 
-                customer.CustomerId = Int32.Parse(userId);
+                customer.CustomerId = userId;
                 customer.FirstName = firstName;
                 customer.LastName = lastName;
                 customer.BirthDate = birthDate;
@@ -144,10 +153,9 @@ namespace Intex2.Areas.Identity.Pages.Account
                 customer.Gender = gender;
                 customer.Age = age;
 
-                _repo.SaveCustomer(customer);
-
                 if (result.Succeeded)
                 {
+                    _repo.SaveCustomer(customer);
                     _logger.LogInformation("User created a new account with password.");
 
                     userId = await _userManager.GetUserIdAsync(user);
@@ -179,6 +187,7 @@ namespace Intex2.Areas.Identity.Pages.Account
             }
 
             // If we got this far, something failed, redisplay form
+            Console.WriteLine("This didn't work");
             return Page();
         }
 

@@ -21,7 +21,7 @@
                 <label asp-for="LastName">Last Name</label>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="BirthDate" class="form-control" aria-required="true" placeholder="birth date">
+                <input asp-for="BirthDate" class="form-control" aria-required="true" placeholder="birth date" type="date">
                 <label asp-for="BirthDate">Birth Date</label>
             </div>
             <div class="form-floating mb-3">
@@ -29,7 +29,10 @@
                 <label asp-for="CountryOfResidence">Country of Residence</label>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Gender" class="form-control" aria-required="true" placeholder="gender">
+                <select asp-for="Gender" class="form-control" aria-required="true">
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
                 <label asp-for="Gender">Gender</label>
             </div>
             <div class="form-floating mb-3">

@@ -5,6 +5,8 @@ using Intex2.Models;
 using Intex2.Models.ViewModels;
 using NuGet.ProjectModel;
 using System.ComponentModel;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Intex2.Controllers
 {
@@ -26,10 +28,12 @@ namespace Intex2.Controllers
         {
             int pageSize = 5;
 
+            
+
             var plvm = new ProductsListViewModel
             {
                 Products = _repo.Products
-                    .Where(x => x.Category == category || category == null)
+                    .Where(x => x.ProductCategories.Any(pc => pc.Category.CategoryName.Contains(category)) || category == null)
                     .OrderBy(x => x.Name)
                     .Skip((pageNum - 1) * pageSize)
                     .Take(pageSize),
@@ -38,7 +42,7 @@ namespace Intex2.Controllers
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = category == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == category).Count()
+                    TotalItems = category == null ? _repo.Products.Count() : _repo.Products.Where(x => x.ProductCategories.Any(pc => pc.Category.CategoryName.Contains(category))).Count()
                 },
                 CurrentCategory = category
             };

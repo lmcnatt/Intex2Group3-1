@@ -11,9 +11,8 @@ namespace Intex2.Models
         public int OrderID { get; set; }
         [BindNever]
         public ICollection<CartLine> Lines { get; set; } = new List<CartLine>();
-        [BindNever]
         public Customer Customer { get; set; }
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
         public string CountryOfTransaction { get; set; }
         public string Date { get; set; }
         public string DayOfWeek { get; set; }
