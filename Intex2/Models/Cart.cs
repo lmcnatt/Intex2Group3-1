@@ -29,13 +29,14 @@
 
         public virtual void Clear() => Lines.Clear();
 
-        public decimal CalculateTotal() => Lines.Sum(x => x.Product.ProductPrice * x.Quantity);
+        public decimal CalculateTotal() => Lines.Sum(x => x.Product.Price * x.Quantity);
 
         public class CartLine
         {
-            public int CartLineId { get; set; }
+            public int OrderId { get; set; }
             public Product Product { get; set; }
             public int Quantity { get; set; }
+            public int Rating { get; set; }
         }
     }
 }

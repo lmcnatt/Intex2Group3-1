@@ -13,6 +13,30 @@
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
+                <input asp-for="FirstName" class="form-control" aria-required="true" placeholder="first name">
+                <label asp-for="FirstName">First Name</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="LastName" class="form-control" aria-required="true" placeholder="last name">
+                <label asp-for="LastName">Last Name</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="BirthDate" class="form-control" aria-required="true" placeholder="birth date">
+                <label asp-for="BirthDate">Birth Date</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="CountryOfResidence" class="form-control" aria-required="true" placeholder="country of residence">
+                <label asp-for="CountryOfResidence">Country of Residence</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Gender" class="form-control" aria-required="true" placeholder="gender">
+                <label asp-for="Gender">Gender</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Age" class="form-control" aria-required="true" placeholder="age">
+                <label asp-for="Age">Age</label>
+            </div>
+            <div class="form-floating mb-3">
                 <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <label asp-for="Input.Email">Email</label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>

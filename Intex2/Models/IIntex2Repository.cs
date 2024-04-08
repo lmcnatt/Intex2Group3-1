@@ -3,5 +3,6 @@
     public interface IIntex2Repository
     {
         public IQueryable<Product> Products { get; }
+        void SaveCustomer(Customer customer);
     }
 }

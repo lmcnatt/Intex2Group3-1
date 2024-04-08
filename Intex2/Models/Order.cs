@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using static Intex2.Models.Cart;
 
@@ -10,9 +11,16 @@ namespace Intex2.Models
         public int OrderID { get; set; }
         [BindNever]
         public ICollection<CartLine> Lines { get; set; } = new List<CartLine>();
-
-        [Required(ErrorMessage = "Please enter a name")]
-        public string? Name { get; set; }
+        [BindNever]
+        public Customer Customer { get; set; }
+        public int CustomerId { get; set; }
+        public string CountryOfTransaction { get; set; }
+        public string Date { get; set; }
+        public string DayOfWeek { get; set; }
+        public string Time { get; set; }
+        public string EntryMode { get; set; } = "CVC";
+        public decimal Amount { get; set; }
+        public string TypeOfTransaction { get; set; } = "Online";
 
         [Required(ErrorMessage = "Please enter the first address line")]
         public string? Line1 { get; set; }
@@ -27,8 +35,12 @@ namespace Intex2.Models
         public string? Zip { get; set; }
 
         [Required(ErrorMessage = "Please enter a country name")]
-        public string? Country { get; set; }
+        public string? ShippingCountry { get; set; }
+        [Required(ErrorMessage = "Please enter a bank name")]
+        public string? Bank { get; set; }
+        [Required(ErrorMessage = "Please enter your type of card")]
+        public string? TypeOfCard { get; set; }
 
-        public bool GiftWrap { get; set; }
+        public bool Fraud { get; set; } = false;
     }
 }

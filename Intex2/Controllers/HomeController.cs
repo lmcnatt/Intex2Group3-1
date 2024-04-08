@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Intex2.Models;
 using Intex2.Models.ViewModels;
 using NuGet.ProjectModel;
+using System.ComponentModel;
 
 namespace Intex2.Controllers
 {
@@ -21,15 +22,15 @@ namespace Intex2.Controllers
             return View();
         }
 
-        public IActionResult Products(string? productType, int pageNum = 1)
+        public IActionResult Products(string? category, int pageNum = 1)
         {
             int pageSize = 5;
 
             var plvm = new ProductsListViewModel
             {
                 Products = _repo.Products
-                    .Where(x => x.ProductType == productType || productType == null)
-                    .OrderBy(x => x.ProductName)
+                    .Where(x => x.Category == category || category == null)
+                    .OrderBy(x => x.Name)
                     .Skip((pageNum - 1) * pageSize)
                     .Take(pageSize),
 
@@ -37,9 +38,9 @@ namespace Intex2.Controllers
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = productType == null ? _repo.Products.Count() : _repo.Products.Where(x => x.ProductType == productType).Count()
+                    TotalItems = category == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == category).Count()
                 },
-                CurrentProductType = productType
+                CurrentCategory = category
             };
 
             return View(plvm);

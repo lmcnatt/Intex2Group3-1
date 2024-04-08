@@ -1,13 +1,13 @@
 ﻿@model Product
 
 <div class="card m-1 p-1">
-    <h4>@Model.ProductName
-        <span class="badge rounded-pill bg-primary text-white float-end"><small>@Model.ProductPrice.ToString("c")</small></span>
+    <h4>@Model.Name
+        <span class="badge rounded-pill bg-primary text-white float-end"><small>@Model.Price.ToString("c")</small></span>
     </h4>
     <ul>
-        <li>Product Type: @Model.ProductType</li>
-        <li>Product Name: @Model.ProductName</li>
-        <li>Product Description: @Model.ProductDescription</li>
+        <li>Product Type: @Model.Category</li>
+        <li>Product Name: @Model.Name</li>
+        <li>Product Description: @Model.Description</li>
     </ul>
 
     <form id="@Model.ProductId" method="post" asp-page="/Cart">

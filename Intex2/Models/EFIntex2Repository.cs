@@ -8,5 +8,11 @@
             _context = context;
         }
         public IQueryable<Product> Products => _context.Products;
+        public IQueryable<Customer> Customers => _context.Customers;
+
+        public void SaveCustomer(Customer customer)
+        {
+            _context.Customers.Add(customer);
+        }
     }
 }
