@@ -45,6 +45,11 @@ namespace Intex2.Controllers
             return View(plvm);
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
