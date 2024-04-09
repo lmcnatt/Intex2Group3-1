@@ -16,33 +16,10 @@
         <li>Product Name: @Model.Name</li>
     </ul>
 
-    <form id="@Model.ProductId" method="post" asp-page="/Cart">
+    <form id="@Model.ProductId" method="post">
         <input type="hidden" asp-for="@Model.ProductId">
-        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-        <button type="submit" class="btn btn-success btn-sm float-end" onclick="addToCart(event)">Add to Cart</button>
+        @* <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" /> *@
+        <button type="submit" class="btn btn-success btn-sm float-end">Add to Cart</button>
     </form>
 
 </div>
-
-<script>
-    function addToCart(event) {
-        event.preventDefault(); // Prevent the form from submitting normally
-
-        var productId = event.target.id;
-        var formData = new FormData(event.target);
-
-        // Make an AJAX request to add the product to the cart
-            fetch'/Cart/AddToCart', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                // Update the cart count on the page
-                document.getElementById('cart-count').innerText = data.cartCount;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
-</script>
