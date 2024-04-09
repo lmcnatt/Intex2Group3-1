@@ -24,7 +24,7 @@ namespace Intex2.Pages
             ReturnUrl = returnUrl ?? "/";
         }
 
-        public void OnPost(int productId)
+        public IActionResult OnPost(int productId, string category, int pageNum)
         {
             Product? product = _repo.Products
               .FirstOrDefault(x => x.ProductId == productId);
@@ -33,6 +33,11 @@ namespace Intex2.Pages
             {
                 Cart.AddItem(product, 1);
             }
+            
+            return RedirectToAction("Products", "Home", new {
+                category = category,
+                pageNum = pageNum
+            });
         }
 
 
