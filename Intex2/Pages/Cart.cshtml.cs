@@ -24,18 +24,15 @@ namespace Intex2.Pages
             ReturnUrl = returnUrl ?? "/";
         }
 
-        public PartialViewResult OnPost(int productId)
+        public void OnPost(int productId)
         {
-            Product product = _repo.Products.FirstOrDefault(x => x.ProductId == productId);
+            Product? product = _repo.Products
+              .FirstOrDefault(x => x.ProductId == productId);
 
             if (product != null)
             {
                 Cart.AddItem(product, 1);
-                int cartCount = Cart.Lines.Sum(x => x.Quantity);
-                return Partial("_CartCountPartial", cartCount);
             }
-
-            return Partial("_CartCountPartial", 0);
         }
 
 
