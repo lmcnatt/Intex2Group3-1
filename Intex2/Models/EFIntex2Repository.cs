@@ -37,5 +37,18 @@ namespace Intex2.Models
             _context.Customers.Add(customer);
             _context.SaveChanges();
         }
+
+        public void DeleteCustomer(Customer customer)
+        {
+            _context.Customers.Remove(customer);
+            _context.SaveChanges();
+        }
+
+        public Customer GetCustomer(string id)
+        {
+            var customer = _context.Customers.Where(c => c.CustomerId == id).FirstOrDefault();
+
+            return customer;
+        }
     }
 }
