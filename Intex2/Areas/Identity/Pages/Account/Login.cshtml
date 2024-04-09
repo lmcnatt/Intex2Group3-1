@@ -8,12 +8,13 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="card custom-card rounded-lg">
                 <div class="card-body">
                     <section>
                         <form id="account" method="post">
-                            <h2>Use a local account to log in.</h2>
+                            <h2 class="text-center">Welcome to our LEGO community!</h2>
+                            <p class="text-center">Sign In Below</p>
                             <hr />
                             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                             <div class="form-floating mb-3">
@@ -32,55 +33,60 @@
                                     @Html.DisplayNameFor(m => m.Input.RememberMe)
                                 </label>
                             </div>
-                            <div>
-                                <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                            <div class="text-center">
+                                <button id="login-submit" type="submit" class="pill-button">Sign In</button>
                             </div>
+                            <hr />
                             <div>
-                                <p>
+                                <p class="text-center">
                                     <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
                                 </p>
-                                <p>
-                                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                                <p class="text-center">
+                                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">New to Brickwell Creations? Register Here!</a>
                                 </p>
                             </div>
                         </form>
                     </section>
+                    <div class="text-center">
+                        <section>
+                            @{
+                                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                                {
+                                    <div>
+                                        <p>
+                                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+                                                article
+                                                about setting up this ASP.NET application to support logging in via external services
+                                            </a>.
+                                        </p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                        <div>
+                                            <p>
+                                                @foreach (var provider in Model.ExternalLogins!)
+                                                {
+                                                    <button type="submit" class="pill-button" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                                        <i class="fab fa-google"></i> <!-- Assuming you're using Font Awesome for icons -->
+                                                         Sign in with @provider.DisplayName
+                                                    </button>
+                                                }
+                                            </p>
+                                        </div>
+                                    </form>
+                                }
+                            }
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="col-md-6 col-md-offset-2  mx-auto">
-    <section>
-        <h3>Use another service to log in.</h3>
-        <hr />
-        @{
-            if ((Model.ExternalLogins?.Count ?? 0) == 0)
-            {
-                <div>
-                    <p>
-                        There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                        about setting up this ASP.NET application to support logging in via external services</a>.
-                    </p>
-                </div>
-            }
-            else
-            {
-                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                    <div>
-                        <p>
-                            @foreach (var provider in Model.ExternalLogins!)
-                            {
-                                <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                            }
-                        </p>
-                    </div>
-                </form>
-            }
-        }
-    </section>
-</div>
+
 
 
 @section Scripts {
