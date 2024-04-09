@@ -14,7 +14,6 @@ namespace Intex2.Models
               .Where(x => x.Product.ProductId == prod.ProductId)
               .FirstOrDefault();
 
-            // Has this item already been added to our cart?
             if (line == null)
             {
                 Lines.Add(new CartLine
