@@ -17,19 +17,19 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between row">
+                    <ul class="navbar-nav col-3">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Products">Products</a>
-                        </li>
+                        @if (!User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Products">Products</a>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <img src="~/img/logo_cropped.png" alt="Logo" class="logo">
                         </li>
 
                         @if (User.Identity.IsAuthenticated)
@@ -48,8 +48,14 @@
                             }
                         }
                     </ul>
-                    <partial name="_LoginPartial" />
-                    <vc:cart-summary />
+                    <a class="navbar-brand justify-content-center col-3">
+                        <img src="~/img/logo_cropped.png" alt="Logo" class="img-fluid">
+                    </a>
+                    <ul class="navbar-nav justify-content-end col-3">
+                        <partial name="_LoginPartial" />
+                        <vc:cart-summary />
+                    </ul>
+                    
                 </div>
             </div>
         </nav>
