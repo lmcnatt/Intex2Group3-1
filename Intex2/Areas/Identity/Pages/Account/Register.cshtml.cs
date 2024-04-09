@@ -143,12 +143,6 @@ namespace Intex2.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     customer.CustomerId = user.Id;
-                    customer.FirstName = FirstName;
-                    customer.LastName = LastName;
-                    customer.BirthDate = BirthDate;
-                    customer.CountryOfResidence = CountryOfResidence;
-                    customer.Gender = Gender;
-                    customer.Age = Age;
 
                     _repo.SaveCustomer(customer);
                     _logger.LogInformation("User created a new account with password.");
