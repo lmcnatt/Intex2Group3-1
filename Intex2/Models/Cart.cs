@@ -1,4 +1,8 @@
-﻿namespace Intex2.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+
+namespace Intex2.Models
 {
     public class Cart
     {
@@ -31,10 +35,13 @@
 
         public decimal CalculateTotal() => Lines.Sum(x => x.Product.Price * x.Quantity);
 
+        [PrimaryKey(nameof(OrderId), nameof(ProductId))]
         public class CartLine
         {
+            public Order order {get; set;}
             public int OrderId { get; set; }
             public Product Product { get; set; }
+            public int ProductId { get; set; }
             public int Quantity { get; set; }
             public int Rating { get; set; }
         }

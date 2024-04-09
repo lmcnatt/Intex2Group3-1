@@ -8,14 +8,14 @@ namespace Intex2.Controllers
     {
         private IOrderRepository _repo;
         private Cart cart;
-        private Customer customer;
+        private Customer _customer;
         DateTime datetime = DateTime.Now;
 
-        public OrderController(IOrderRepository repoService, Cart cartService, Customer customerService)
+        public OrderController(IOrderRepository repoService, Cart cartService, Customer customer)
         {
             _repo = repoService;
             cart = cartService;
-            customer = customerService;
+            _customer = customer;
         }
         public ViewResult Checkout() => View(new Order());
 
@@ -34,7 +34,7 @@ namespace Intex2.Controllers
                 order.DayOfWeek = datetime.ToString("ddd");
                 order.Time = datetime.ToString("H");
                 order.Amount = cart.CalculateTotal();
-                order.CountryOfTransaction = customer.CountryOfResidence;
+                order.CountryOfTransaction = _customer.CountryOfResidence;
                 _repo.SaveOrder(order);
                 cart.Clear();
                 return RedirectToPage("/Completed", new { orderId = order.OrderID });

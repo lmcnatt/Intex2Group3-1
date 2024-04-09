@@ -1,4 +1,6 @@
-﻿namespace Intex2.Models
+﻿using Intex2.Components;
+
+namespace Intex2.Models
 {
     public class Product
     {
@@ -11,6 +13,6 @@
         public string? PrimaryColor { get; set; }
         public string? SecondaryColor { get; set; }
         public string? Description { get; set; }
-        public string? Category { get; set; }
+        public virtual ICollection<ProductCategory>? ProductCategories { get; set; } = new List<ProductCategory>();
     }
 }

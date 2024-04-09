@@ -14,10 +14,10 @@ namespace Intex2.Components
 
         public IViewComponentResult Invoke()
         {
-            ViewBag.SelectedProductType = RouteData?.Values["Category"];
+            ViewBag.SelectedCategory = RouteData?.Values["Category"];
 
-            var categories = _repo.Products
-                .Select(x => x.Category)
+            var categories = _repo.ProductCategories
+                .Select(pc => pc.Category.CategoryName)
                 .Distinct()
                 .OrderBy(x => x);
 

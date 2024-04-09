@@ -6,7 +6,8 @@ namespace Intex2.Models
 {
     public class Customer
     {
-        public int CustomerId { get; set; }
+        [Key]
+        public string CustomerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string BirthDate { get; set; }

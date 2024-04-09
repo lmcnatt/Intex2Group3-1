@@ -64,11 +64,11 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute("roles", "Role", new { Controller = "Role", Action = "Index" });
-app.MapControllerRoute("pagenumandtype", "{category}/Page{pageNum}", new { Controller = "Home", Action = "Products" });
-app.MapControllerRoute("page", "Page/{pageNum}", new { Controller = "Home", Action = "Products", pageNum = 1 });
-app.MapControllerRoute("projectType", "{category}", new { Controller = "Home", Action = "Products", pageNum = 1 });
-app.MapControllerRoute("pagination", "Products/Page{pageNum}", new { Controller = "Home", Action = "Products", pageNum = 1 });
+// app.MapControllerRoute("roles", "Role", new { Controller = "Role", Action = "Index" });
+// app.MapControllerRoute("pagenumandtype", "{category}/Page{pageNum}", new { Controller = "Home", Action = "Products" });
+// app.MapControllerRoute("page", "Page/{pageNum}", new { Controller = "Home", Action = "Products", pageNum = 1 });
+// app.MapControllerRoute("projectType", "{category}", new { Controller = "Home", Action = "Products", pageNum = 1 });
+// app.MapControllerRoute("pagination", "Products/Page{pageNum}", new { Controller = "Home", Action = "Products", pageNum = 1 });
 app.MapDefaultControllerRoute();
 
 app.MapRazorPages();
