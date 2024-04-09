@@ -54,6 +54,11 @@ namespace Intex2.Controllers
             return View(plvm);
         }
 
+        public IActionResult ProductDetails()
+        {
+            return View();
+        }
+
         public IActionResult About()
         {
             return View();
