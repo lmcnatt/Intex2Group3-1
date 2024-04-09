@@ -15,5 +15,6 @@ namespace Intex2.Models
         public string Gender { get; set; }
         public int Age { get; set; }
         public int Cluster { get; set; }
+        public int ClusterRecId { get; set; }
     }
 }
