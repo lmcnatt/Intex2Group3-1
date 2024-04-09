@@ -35,6 +35,7 @@ namespace Intex2.Models
         public void SaveCustomer(Customer customer)
         {
             _context.Customers.Add(customer);
+            _context.SaveChanges();
         }
     }
 }

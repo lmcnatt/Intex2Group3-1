@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,8 +7,7 @@ namespace Intex2.Models
 {
     public class Customer
     {
-        [Key]
-        public string CustomerId { get; set; }
+        public string CustomerId { get; set; } = "temp";
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string BirthDate { get; set; }

@@ -12,5 +12,16 @@ namespace Intex2.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Customer> Customers { get; set; }
+
+        // protected override void OnModelCreating(ModelBuilder modelBuilder)
+        // {
+        //     base.OnModelCreating(modelBuilder);
+
+        //     modelBuilder.Entity<Customer>()
+        //         .HasOne(c => c.User)
+        //         .WithOne()
+        //         .HasForeignKey<Customer>(c => c.CustomerId)
+        //         .OnDelete(DeleteBehavior.Cascade);
+        // }
     }
 }

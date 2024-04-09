@@ -137,28 +137,21 @@ namespace Intex2.Areas.Identity.Pages.Account
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                var userId = await _userManager.GetUserIdAsync(user);
-                var firstName = FirstName;
-                var lastName = LastName;
-                var birthDate = BirthDate;
-                var countryOfResidence = CountryOfResidence;
-                var gender = Gender;
-                var age = Age;
-
-                customer.CustomerId = userId;
-                customer.FirstName = firstName;
-                customer.LastName = lastName;
-                customer.BirthDate = birthDate;
-                customer.CountryOfResidence = countryOfResidence;
-                customer.Gender = gender;
-                customer.Age = age;
 
                 if (result.Succeeded)
                 {
+                    customer.CustomerId = user.Id;
+                    customer.FirstName = FirstName;
+                    customer.LastName = LastName;
+                    customer.BirthDate = BirthDate;
+                    customer.CountryOfResidence = CountryOfResidence;
+                    customer.Gender = Gender;
+                    customer.Age = Age;
+
                     _repo.SaveCustomer(customer);
                     _logger.LogInformation("User created a new account with password.");
 
-                    userId = await _userManager.GetUserIdAsync(user);
+                    var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
