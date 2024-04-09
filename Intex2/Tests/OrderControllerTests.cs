@@ -21,7 +21,7 @@ namespace SportsStore.Tests
             Order order = new Order();
             Customer customer= new Customer();
             // Arrange - create an instance of the controller
-            OrderController target = new OrderController(mock.Object, cart, customer);
+            OrderController target = new OrderController(mock.Object, cart);
 
             // Act
             ViewResult? result = target.Checkout(order) as ViewResult;
@@ -45,7 +45,7 @@ namespace SportsStore.Tests
             cart.AddItem(new Product(), 1);
             Customer customer = new Customer();
             // Arrange - create an instance of the controller
-            OrderController target = new OrderController(mock.Object, cart, customer);
+            OrderController target = new OrderController(mock.Object, cart);
             // Arrange - add an error to the model
             target.ModelState.AddModelError("error", "error");
 
@@ -70,7 +70,7 @@ namespace SportsStore.Tests
             cart.AddItem(new Product(), 1);
             Customer customer = new Customer();
             // Arrange - create an instance of the controller
-            OrderController target = new OrderController(mock.Object, cart, customer);
+            OrderController target = new OrderController(mock.Object, cart);
 
             // Act - try to checkout
             RedirectToPageResult? result = target.Checkout(new Order()) as RedirectToPageResult;

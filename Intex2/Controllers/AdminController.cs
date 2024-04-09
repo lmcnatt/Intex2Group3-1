@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Intex2.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private IAdminRepository _repo;
