@@ -38,7 +38,7 @@ namespace Intex2.Models
         [PrimaryKey(nameof(OrderId), nameof(ProductId))]
         public class CartLine
         {
-            public Order order {get; set;}
+            public Order Order {get; set;}
             public int OrderId { get; set; }
             public Product Product { get; set; }
             public int ProductId { get; set; }

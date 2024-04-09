@@ -23,7 +23,8 @@ namespace Intex2.Models
                                                                     Description = p.Description,
                                                                     ProductCategories = (ICollection<ProductCategory>)p.ProductCategories.Select(pc => new ProductCategory
                                                                     {
-                                                                        Category = pc.Category
+                                                                        Category = pc.Category,
+                                                                        CategoryId = pc.CategoryId
                                                                     })
                                                                 });
 

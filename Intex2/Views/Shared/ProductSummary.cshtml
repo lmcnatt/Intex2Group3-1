@@ -5,14 +5,13 @@
         <span class="badge rounded-pill bg-primary text-white float-end"><small>@Model.Price.ToString("c")</small></span>
     </h4>
     <ul>
-        <li>Product Type: 
+        <li>Categories: 
             @foreach (ProductCategory c in Model.ProductCategories)
             {
-                @c.Category.CategoryName 
+                @c.Category.CategoryName @: - 
             }
         </li>
         <li>Product Name: @Model.Name</li>
-        <li>Product Description: @Model.Description</li>
     </ul>
 
     <form id="@Model.ProductId" method="post" asp-page="/Cart">
