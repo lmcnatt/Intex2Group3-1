@@ -5,15 +5,22 @@
     <div id="cookie-content">
         <strong>COOKIE POLICY</strong><br>
         <span>Last updated April 08, 2024</span><br><br>
-        <span>This Cookie Policy explains how Brickwell Creations ("Company," "we," "us," and "our") uses cookies and similar technologies to recognize you when you visit our website at <a href="https://brickwellcreations.azurewebsites.net" target="_blank">https://brickwellcreations.azurewebsites.net</a> ("Website"). It explains what these technologies are and why we use them, as well as your rights to control our use of them.</span><br><br>
+        <span>This Cookie Policy explains how Brickwell Creations uses cookies and similar technologies to recognize you when you visit our website. It explains what these technologies are and why we use them, as well as your rights to control our use of them.</span><br>
         <span>In some cases, we may use cookies to collect personal information, or that becomes personal information if we combine it with other information.</span><br><br>
         <strong>What are cookies?</strong><br><br>
         <span>Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners to make their websites work, or to work more efficiently, as well as to provide reporting information.</span><br><br>
     </div>
-    <button id="accept-cookies">Accept</button>
+    <button id="accept-cookies" onclick="hideCookieNotification()">Accept</button>
 </div>
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>To INTEX 2</p>
 </div>
+
+<script>
+    function hideCookieNotification() {
+        var cookieNotification = document.getElementById("cookie-notification");
+        cookieNotification.style.display = "none";
+    }
+</script>
