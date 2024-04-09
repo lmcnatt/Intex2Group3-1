@@ -12,6 +12,6 @@
 <li class="nav-item">
     <a class="btn btn-sm btn-secondary navbar-btn" asp-page="/Cart" asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
         <i class="fa fa-shopping-cart"></i>
-        <span id="cart-count">0</span>
+        <span>@Model.Lines.Sum(x => x.Quantity)</span>
     </a>
 </li>

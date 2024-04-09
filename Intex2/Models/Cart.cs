@@ -34,6 +34,8 @@ namespace Intex2.Models
 
         public decimal CalculateTotal() => Lines.Sum(x => x.Product.Price * x.Quantity);
 
+        public int TotalLineItems() => Lines.Count();
+
         [PrimaryKey(nameof(OrderId), nameof(ProductId))]
         public class CartLine
         {
