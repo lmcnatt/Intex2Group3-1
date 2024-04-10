@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace Intex2.Models
 {
@@ -33,6 +34,6 @@ namespace Intex2.Models
                     })
             });
 
-        public IQueryable<Order> Orders=> _context.Orders;
+        public IQueryable<Order> Orders => _context.Orders;
     }
 }

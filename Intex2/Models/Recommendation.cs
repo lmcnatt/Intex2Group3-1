@@ -6,7 +6,7 @@ namespace Intex2.Models
     public class Recommendation
     {
         [Key]
-        [ForeignKey("ProductId")]
+        //[ForeignKey("ProductId")]
         public int ProductId { get; set; }
 
         public int Rec1 { get; set; }
@@ -19,7 +19,7 @@ namespace Intex2.Models
         public int Rec8 { get; set; }
         public int Rec9 { get; set; }
         public int Rec10 { get; set; }
-        public virtual ICollection<Product>? Products { get; set; } = new List<Product>();
+        //public virtual ICollection<Product>? Products { get; set; } = new List<Product>();
 
     }
 }
