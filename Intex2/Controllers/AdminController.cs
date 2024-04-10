@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Intex2.Models;
 using Microsoft.EntityFrameworkCore;
+using Intex2.Models.ViewModels;
 
 namespace Intex2.Controllers
 {
@@ -25,9 +26,26 @@ namespace Intex2.Controllers
             return View();
         }
 
-        public IActionResult Orders()
+        public IActionResult Orders(int pageNum = 1)
         {
-            return View();
+            int pageSize = 100;
+
+            var plvm = new OrdersListViewModel
+            {
+                Orders = _repo.Orders
+                    .OrderBy(x => x.OrderID)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize),
+
+                PaginationInfo = new PaginationInfo
+                {
+                    CurrentPage = pageNum,
+                    ItemsPerPage = pageSize,
+                    TotalItems = _repo.Orders.Count()
+                }
+            };
+
+            return View(plvm);
         }
     }
 }
