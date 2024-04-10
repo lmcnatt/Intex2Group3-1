@@ -21,8 +21,8 @@ namespace Intex2.Controllers
         public HomeController(IIntex2Repository repo)
         {
             _repo = repo;
-            var modelPath = "Intex2\fraud_onnx_model.onnx"; 
-            var model_session = new InferenceSession(modelPath);
+            //var modelPath = "Intex2\fraud_onnx_model.onnx"; 
+            //var model_session = new InferenceSession(modelPath);
             
             
         }
@@ -30,7 +30,7 @@ namespace Intex2.Controllers
         public IActionResult Index(int id = 1)
         {
             // Assuming _repo.Recommendations is a DbSet or similar that allows querying
-            var recommendation = _repo.Recommendations.FirstOrDefault(r => r.ProductId == id);
+            var recommendation = _repo.Recommendations.FirstOrDefault(r => r.RecId == id);
 
             // Prepare a list to hold the recommended products
             var recommendedProducts = new List<Product>();

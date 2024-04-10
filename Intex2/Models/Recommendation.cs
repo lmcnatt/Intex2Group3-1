@@ -7,7 +7,7 @@ namespace Intex2.Models
     {
         [Key]
         //[ForeignKey("ProductId")]
-        public int ProductId { get; set; }
+        public int RecId { get; set; }
 
         public int Rec1 { get; set; }
         public int Rec2 { get; set; }

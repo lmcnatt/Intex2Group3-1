@@ -56,7 +56,7 @@ namespace Intex2.Models
 
         public Recommendation GetRecommendationById(int id)
         {
-            return _context.Recommendations.FirstOrDefault(r => r.ProductId == id);
+            return _context.Recommendations.FirstOrDefault(r => r.RecId == id);
         }
 
     }
