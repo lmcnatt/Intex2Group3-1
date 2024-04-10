@@ -1,5 +1,45 @@
 @{
     ViewData["Title"] = "Orders";
 }
+@model Order
 
 <h1>@ViewData["Title"]</h1>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Customer ID</th>
+            <th>Transaction Country</th>
+            <th>Date</th>
+            <th>DOW</th>
+            <th>Time</th>
+            <th>Entry Mode</th>
+            <th>Amount</th>
+            <th>Transaction Type</th>
+            <th>Shipping Address</th>
+            <th>Bank</th>
+            <th>Card Type</th>
+            <th>Fraud</th> 
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="text-left">@Model.OrderID</td>
+            <td class="text-left">@Model.Customer</td>
+            <td class="text-left">@Model.CustomerId</td>
+            <td class="text-left">@Model.CountryOfTransaction</td>
+            <td class="text-left">@Model.Date</td>
+            <td class="text-left">@Model.DayOfWeek</td>
+            <td class="text-left">@Model.Time</td>
+            <td class="text-left">@Model.EntryMode</td>
+            <td class="text-left">@Model.Amount</td>
+            <td class="text-left">@Model.TypeOfTransaction</td>
+            <td class="text-left">@Model.Line1, @Model.Line2 <br /> @Model.City, @Model.State @Model.Zip <br />@Model.ShippingCountry</td>
+            <td class="text-left">@Model.Bank</td>
+            <td class="text-left">@Model.TypeOfCard</td>
+            <td class="text-left">@Model.Fraud</td>
+        </tr>
+    </tbody>
+</table>
