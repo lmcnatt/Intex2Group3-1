@@ -1,5 +1,6 @@
 @{
     ViewData["Title"] = "Orders";
+ 
 }
 
 @model OrdersListViewModel
@@ -37,7 +38,14 @@
                 <td class="text-left">@order.EntryMode</td>
                 <td class="text-left">@order.Amount</td>
                 <td class="text-left">@order.TypeOfTransaction</td>
+                @if (@order.ShippingAddress == "")
+                {
+                <td class="text-left">@order.ShippingCountry</td>
+                }
+                else
+                {
                 <td class="text-left">@order.ShippingAddress<br /> @order.City, @order.State @order.Zip<br />@order.ShippingCountry</td>
+                }
                 <td class="text-left">@order.Bank</td>
                 <td class="text-left">@order.TypeOfCard</td>
                 <td class="text-left">@order.Fraud</td>
@@ -46,11 +54,17 @@
     </tbody>
 </table>
 
-<a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="1">1</a>
-<a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="2">2</a>
-<a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="3">3</a>
-<a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="4">4</a>
-<a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="5">5</a>
-<a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="6">6</a>
-<a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="7">7</a>
-<a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="8">8</a>
+@if (Model?.PaginationInfo != null)
+{
+    int totalPages = Model.PaginationInfo.TotalPages;
+    int currentPage = Model.PaginationInfo.CurrentPage;
+
+    @for (int i = 1; i <= totalPages; i++)
+    {
+        <a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="@i" class="@(i == currentPage ? "active" : "")">@i</a>
+    }
+}
+else
+{
+    <p>No pagination information available.</p>
+}

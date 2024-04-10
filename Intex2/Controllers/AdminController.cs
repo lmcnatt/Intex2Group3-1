@@ -51,7 +51,10 @@ namespace Intex2.Controllers
         }
         public IActionResult Orders(int pageNum = 1)
         {
-            int pageSize = 100;
+            int pageSize = 500;
+
+            var totalItems = _repo.Orders.Count();
+            int totalPages = (totalItems + pageSize - 1) / pageSize;
 
             var plvm = new OrdersListViewModel
             {
@@ -64,7 +67,8 @@ namespace Intex2.Controllers
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = _repo.Orders.Count()
+                    TotalItems = totalItems,
+                    TotalPages = totalPages
                 }
             };
 

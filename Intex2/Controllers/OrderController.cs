@@ -16,11 +16,11 @@ namespace Intex2.Controllers
         private Cart cart;
         DateTime datetime = DateTime.Now;
         private InferenceSession _session;
-        public OrderController(IOrderRepository repoService, Cart cartService, InferenceSession session)
+        public OrderController(IOrderRepository repoService, Cart cartService) //,InferenceSession session)
         {
             _repo = repoService;
             cart = cartService;
-            _session = session;
+            //_session = session;
         }
 
         // public Customer Customer { get; set; }
