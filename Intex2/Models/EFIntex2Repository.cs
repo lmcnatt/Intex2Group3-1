@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Intex2.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Intex2.Models
 {
@@ -51,11 +52,34 @@ namespace Intex2.Models
             return customer;
         }
 
-        public IQueryable<Recommendation> Recommendations => _context.Recommendations;
+        public IQueryable<Recommendation> Recommendations => _context.Recommendations.Include(r => r.Products)
+            .Select(r => new Recommendation
+            {
+                ProductId = r.ProductId,
+                Rec1 = r.Rec1,
+                Rec2 = r.Rec2,
+                Rec3 = r.Rec3,
+                Rec4 = r.Rec4,
+                Rec5 = r.Rec5,
+                Rec6 = r.Rec6,
+                Rec7 = r.Rec7,
+                Rec8 = r.Rec8,
+                Rec9 = r.Rec9,
+                Rec10 = r.Rec10,
+                Products = r.Products.Select(p => new Product
+                {
+                    ProductId = p.ProductId,
+                    Name = p.Name,
+                    Price = p.Price,
+                    ImgLink = p.ImgLink,
+                    Description = p.Description
+                }).ToList()
+
+            });
 
         public Recommendation GetRecommendationById(int id)
         {
-            return _context.Recommendations.FirstOrDefault(r => r.RecID == id);
+            return _context.Recommendations.FirstOrDefault(r => r.ProductId == id);
         }
 
     }

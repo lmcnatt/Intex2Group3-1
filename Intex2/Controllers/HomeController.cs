@@ -22,8 +22,9 @@ namespace Intex2.Controllers
 
         public IActionResult Index(int id=1)
         {
-            var recommendation = _repo.Recommendations.Where(p => p.RecID == id).FirstOrDefault();
-            return View(recommendation); // Pass single recommendation to view
+            var recommendation = _repo.GetRecommendationById(id);
+            
+            return View(recommendation);
         }
 
         public IActionResult Products(string? category, int pageNum = 1)

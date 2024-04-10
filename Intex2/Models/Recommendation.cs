@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Intex2.Models
 {
     public class Recommendation
     {
         [Key]
-        public int RecID { get; set; }
+        [ForeignKey("ProductId")]
+        public int ProductId { get; set; }
+
         public int Rec1 { get; set; }
         public int Rec2 { get; set; }
         public int Rec3 { get; set; }
@@ -16,5 +19,7 @@ namespace Intex2.Models
         public int Rec8 { get; set; }
         public int Rec9 { get; set; }
         public int Rec10 { get; set; }
+        public virtual ICollection<Product>? Products { get; set; } = new List<Product>();
+
     }
 }
