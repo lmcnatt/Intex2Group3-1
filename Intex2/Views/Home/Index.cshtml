@@ -2,6 +2,8 @@
     ViewData["Title"] = "Home Page";
 }
 
+@model Recommendation
+
 @* This is the cookie notification *@
 <div>
     <div id="cookie-notification">
@@ -43,10 +45,22 @@
                 </span>
             </a>
         </div>
-
-
-
-        </div>
     </div>
+
+
+    <h1>Recommendations</h1>
+    <p>@Model.ProductId</p>
+    <p>@Model.Rec1</p>
+    
+    @foreach (var product in Model.Products)
+    {
+        <li>
+            <strong>Product ID:</strong> @product.ProductId <br />
+            <strong>Name:</strong> @product.Name <br />
+            <strong>Price:</strong> @product.Price <br />
+            <!-- Display other properties of Product as needed -->
+        </li>
+    }
+
     
 </body>

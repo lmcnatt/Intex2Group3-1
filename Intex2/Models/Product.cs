@@ -1,4 +1,5 @@
 ﻿using Intex2.Components;
+using System.ComponentModel.DataAnnotations;
 
 namespace Intex2.Models
 {

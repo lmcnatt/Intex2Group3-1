@@ -7,6 +7,7 @@ using NuGet.ProjectModel;
 using System.ComponentModel;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Microsoft.CodeAnalysis;
 
 namespace Intex2.Controllers
 {
@@ -19,9 +20,11 @@ namespace Intex2.Controllers
             _repo = repo;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int id=1)
         {
-            return View();
+            var recommendation = _repo.GetRecommendationById(id);
+            
+            return View(recommendation);
         }
 
         public IActionResult Products(string? category, int pageNum = 1)
@@ -83,5 +86,7 @@ namespace Intex2.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }

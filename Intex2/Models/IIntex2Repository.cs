@@ -9,5 +9,8 @@
         void SaveCustomer(Customer customer);
         void DeleteCustomer(Customer customer);
         public Customer GetCustomer(string id);
+        public IQueryable<Recommendation> Recommendations { get; }
+        public Recommendation GetRecommendationById(int id);
+        
     }
 }
