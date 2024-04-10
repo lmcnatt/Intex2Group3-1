@@ -12,6 +12,7 @@ namespace Intex2.Models
         }
 
         public IQueryable<Order> Orders => _context.Orders
+            .Include(o => o.Customer)
             .Include(o => o.Lines)
             .ThenInclude(l => l.Product);
 
