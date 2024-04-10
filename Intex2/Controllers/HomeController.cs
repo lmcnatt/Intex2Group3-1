@@ -20,11 +20,32 @@ namespace Intex2.Controllers
             _repo = repo;
         }
 
-        public IActionResult Index(int id=1)
+        public IActionResult Index(int id = 1)
         {
-            var recommendation = _repo.GetRecommendationById(id);
-            
-            return View(recommendation);
+            // Assuming _repo.Recommendations is a DbSet or similar that allows querying
+            var recommendation = _repo.Recommendations.FirstOrDefault(r => r.ProductId == id);
+
+            // Prepare a list to hold the recommended products
+            var recommendedProducts = new List<Product>();
+
+            // Loop through each recommendation column (rec1 to rec10)
+            for (int i = 1; i <= 10; i++)
+            {
+                // Retrieve the product ID for the current recommendation column
+                var recId = (int)typeof(Recommendation).GetProperty($"Rec{i}").GetValue(recommendation);
+
+                // Retrieve the product details for the current recommendation ID
+                var product = _repo.Products.FirstOrDefault(p => p.ProductId == recId);
+
+                // Add the product to the list if it exists
+                if (product != null)
+                {
+                    recommendedProducts.Add(product);
+                }
+            }
+
+            // Pass the list of recommended products to the view
+            return View(recommendedProducts);
         }
 
         public IActionResult Products(string? category, int pageNum = 1)
