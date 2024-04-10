@@ -8,7 +8,10 @@ using System.ComponentModel;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Microsoft.CodeAnalysis;
-
+using Microsoft.ML;
+using Microsoft.ML.OnnxRuntime;
+using Microsoft.ML.OnnxRuntime.Tensors;
+ 
 namespace Intex2.Controllers
 {
     public class HomeController : Controller
@@ -18,6 +21,10 @@ namespace Intex2.Controllers
         public HomeController(IIntex2Repository repo)
         {
             _repo = repo;
+            var modelPath = "Intex2\fraud_onnx_model.onnx"; 
+            var model_session = new InferenceSession(modelPath);
+            
+            
         }
 
         public IActionResult Index(int id = 1)
