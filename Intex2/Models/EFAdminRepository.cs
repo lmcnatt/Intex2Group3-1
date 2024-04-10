@@ -34,6 +34,7 @@ namespace Intex2.Models
                     })
             });
 
+        public IQueryable<ProductCategory> ProductCategories => _context.ProductCategories;
         public IQueryable<Order> Orders => _context.Orders;
     }
 }
