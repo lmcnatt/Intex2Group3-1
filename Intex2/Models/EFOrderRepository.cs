@@ -15,6 +15,8 @@ namespace Intex2.Models
             .Include(o => o.Lines)
             .ThenInclude(l => l.Product);
 
+        public IQueryable<Customer> Customers => _context.Customers;
+
         public void SaveOrder(Order order)
         {
             _context.AttachRange(order.Lines.Select(l => l.Product));
@@ -23,6 +25,13 @@ namespace Intex2.Models
                 _context.Orders.Add(order);
             }
             _context.SaveChanges();
+        }
+
+        public Customer GetCustomer(string id)
+        {
+            var customer = _context.Customers.Where(c => c.CustomerId == id).FirstOrDefault();
+
+            return customer;
         }
     }
 }

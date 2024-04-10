@@ -54,6 +54,13 @@ namespace Intex2.Controllers
             return View(plvm);
         }
 
+        [Route("ProductDetails/{productId:int}")]
+        public IActionResult ProductDetails(int productId)
+        {
+            var product = _repo.Products.Where(p =>  p.ProductId == productId).FirstOrDefault();
+            return View(product);
+        }
+
         public IActionResult About()
         {
             return View();

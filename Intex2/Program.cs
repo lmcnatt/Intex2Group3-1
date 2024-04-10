@@ -19,6 +19,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddScoped<IIntex2Repository, EFIntex2Repository>();
 builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
+builder.Services.AddScoped<IAdminRepository, EFAdminRepository>();
 
 builder.Services.AddRazorPages();
 

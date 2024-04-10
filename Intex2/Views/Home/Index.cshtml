@@ -1,26 +1,52 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<div id="cookie-notification">
-    <div id="cookie-content">
-        <strong>COOKIE POLICY</strong><br>
-        <span>Last updated April 08, 2024</span><br><br>
-        <span>This Cookie Policy explains how Brickwell Creations uses cookies and similar technologies to recognize you when you visit our website. It explains what these technologies are and why we use them, as well as your rights to control our use of them.</span><br>
-        <span>In some cases, we may use cookies to collect personal information, or that becomes personal information if we combine it with other information.</span><br><br>
-        <strong>What are cookies?</strong><br><br>
-        <span>Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners to make their websites work, or to work more efficiently, as well as to provide reporting information.</span><br><br>
+
+@* This is the cookie notification *@
+<div>
+    <div id="cookie-notification">
+        <div id="cookie-content">
+            <strong>COOKIE POLICY</strong><br>
+            <span>Last updated April 08, 2024</span><br><br>
+            <span>This Cookie Policy explains how Brickwell Creations uses cookies and similar technologies to recognize you when you visit our website. It explains what these technologies are and why we use them, as well as your rights to control our use of them.</span><br>
+            <span>In some cases, we may use cookies to collect personal information, or that becomes personal information if we combine it with other information.</span><br><br>
+            <strong>What are cookies?</strong><br><br>
+            <span>Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners to make their websites work, or to work more efficiently, as well as to provide reporting information.</span><br><br>
+        </div>
+        <button id="accept-cookies" class="pill-button" onclick="hideCookieNotification()">Accept</button>
     </div>
-    <button id="accept-cookies" onclick="hideCookieNotification()">Accept</button>
+
+    <script>
+        function hideCookieNotification() {
+            var cookieNotification = document.getElementById("cookie-notification");
+            cookieNotification.style.display = "none";
+        }
+    </script>
 </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>To INTEX 2</p>
-</div>
+@* Homepage Content *@
+<head>
+    <img src="~/img/landingpage.png" alt="Build, Create, Inspire" class="img-fluid" style="width: 100%">
+</head>
+<br /><br />
+<body>
+    <div class="row">
+        <div class="col-10">
+            <h2><b>Popular Picks</b></h2>
+            <p class="subtext">From fan favorites to new releases, explore our curated selection of the most sought-after LEGO sets, handpicked based on popularity and purchases.</p>
+        </div>
+        <div class="col-2">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Products">
+                <span>
+                    <h4 style="display: inline-block; margin-right: 5px;"><b>Shop More</b></h4>
+                    <i class="fas fa-arrow-right"></i>
+                </span>
+            </a>
+        </div>
 
-<script>
-    function hideCookieNotification() {
-        var cookieNotification = document.getElementById("cookie-notification");
-        cookieNotification.style.display = "none";
-    }
-</script>
+
+
+        </div>
+    </div>
+    
+</body>

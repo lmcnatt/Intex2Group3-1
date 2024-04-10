@@ -1,6 +1,31 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+@model Product
 
+<div class="card">
+    <h4>
+        @Model.Name
+    </h4>
+    <ul>
+        <li>Product Name: @Model.Name</li>
+        <li>
+            Categories:
+            @foreach (ProductCategory c in Model.ProductCategories)
+            {
+                @c.Category.CategoryName @: -
+            }
+            | Created in: @Model.Year | @Model.NumParts Pieces
+        </li>
+        <li>Colors: @Model.PrimaryColor and @Model.SecondaryColor</li>
+        <li>@Model.Description</li>
+        <li>Our Price: @Model.Price</li>
+        <li><img src="@Model.ImgLink"/></li>
+    </ul>
+
+    <form asp-page="/Cart" id="@Model.ProductId" method="post">
+        <input type="hidden" asp-for="@Model.ProductId">
+        <input type="hidden" name="category" value="@ViewContext.HttpContext.Request.Query["category"]" />
+        <input type="hidden" name="pageNum" value="@ViewContext.HttpContext.Request.Query["pageNum"]" />
+        @* <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" /> *@
+        <button type="submit" class="btn btn-success btn-sm float-end">Add to Cart</button>
+    </form>
+
+</div>

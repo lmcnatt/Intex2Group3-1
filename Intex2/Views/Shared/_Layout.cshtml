@@ -18,7 +18,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between row">
-                    <ul class="navbar-nav col-3">
+                    <ul class="navbar-nav col-md-4">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -38,15 +38,21 @@
                             @if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Products">Products</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Index">Users</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Orders">Orders</a>
                                 </li>
                             }
                         }
                     </ul>
-                    <a class="navbar-brand justify-content-center col-3">
+                    <a class="navbar-brand justify-content-center col-md-3">
                         <img src="~/img/logo_cropped.png" alt="Logo" class="img-fluid">
                     </a>
-                    <ul class="navbar-nav justify-content-end col-3">
+                    <ul class="navbar-nav justify-content-end col-md-4">
                         <partial name="_LoginPartial" />
                         <vc:cart-summary />
                     </ul>
