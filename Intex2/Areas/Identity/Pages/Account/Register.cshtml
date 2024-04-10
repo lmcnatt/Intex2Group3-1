@@ -4,6 +4,7 @@
     ViewData["Title"] = "Register";
 }
 
+@* Register New Use *@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-5">
@@ -11,6 +12,7 @@
 
                 <div class="card-body">
 
+                    @* Register with an external login*@
                     <section class="text-center">
                         <h2 class="text-center">Register</h2><br />
                         @{
@@ -43,7 +45,10 @@
                         }
                     </section>
                 </div>
+
                 <hr />
+
+                @* Registration Form *@
                 <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                     <h2 class="text-center">Create Account</h2>
                     <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>

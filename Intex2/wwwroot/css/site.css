@@ -44,20 +44,6 @@ body {
   margin-bottom: 20px;
 }
 
-#accept-cookies {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-    #accept-cookies:hover {
-      background-color: #0056b3;
-    }
 
 .custom-card {
     border-color: #F5F5F5;
@@ -78,3 +64,11 @@ body {
         background-color: #237841; /* Change the color code to set the hover background color */
         color: #fff; /* Change the color code to set the hover text color */
     }
+
+.subtext {
+    color: #5A5A5A;
+}
+
+.more-link {
+    text-decoration: none; /* Remove underline */
+}

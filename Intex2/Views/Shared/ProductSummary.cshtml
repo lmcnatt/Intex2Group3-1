@@ -16,8 +16,10 @@
         <li>Product Name: @Model.Name</li>
     </ul>
 
-    <form asp-action="" id="@Model.ProductId" method="post">
+    <form asp-page="/Cart" id="@Model.ProductId" method="post">
         <input type="hidden" asp-for="@Model.ProductId">
+        <input type="hidden" name="category" value="@ViewContext.HttpContext.Request.Query["category"]" />
+        <input type="hidden" name="pageNum" value="@ViewContext.HttpContext.Request.Query["pageNum"]" />
         @* <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" /> *@
         <button type="submit" class="btn btn-success btn-sm float-end">Add to Cart</button>
     </form>
