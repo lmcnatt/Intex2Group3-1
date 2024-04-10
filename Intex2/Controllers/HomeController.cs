@@ -20,7 +20,7 @@ namespace Intex2.Controllers
             _repo = repo;
         }
 
-        public IActionResult Index(int id)
+        public IActionResult Index(int id=1)
         {
             var recommendation = _repo.Recommendations.Where(p => p.RecID == id).FirstOrDefault();
             return View(recommendation); // Pass single recommendation to view
