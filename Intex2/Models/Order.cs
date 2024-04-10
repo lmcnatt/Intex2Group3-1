@@ -11,12 +11,12 @@ namespace Intex2.Models
         public int OrderID { get; set; }
         [BindNever]
         public ICollection<CartLine> Lines { get; set; } = new List<CartLine>();
-        public Customer Customer { get; set; }
-        public string CustomerId { get; set; }
-        public string CountryOfTransaction { get; set; }
-        public string Date { get; set; }
-        public string DayOfWeek { get; set; }
-        public string Time { get; set; }
+        public Customer? Customer { get; set; }
+        public string? CustomerId { get; set; }
+        public string? CountryOfTransaction { get; set; }
+        public string? Date { get; set; }
+        public string? DayOfWeek { get; set; }
+        public string? Time { get; set; }
         public string EntryMode { get; set; } = "CVC";
         public decimal Amount { get; set; }
         public string TypeOfTransaction { get; set; } = "Online";
