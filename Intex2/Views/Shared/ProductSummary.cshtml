@@ -5,26 +5,25 @@
         <div class="col-4">
             <img src="@Model.ImgLink" class="img-thumbnail rounded float-left mx-auto my-auto d-block " />
         </div>
-        <div class="col-8">
-            <h3>
-                @Model.Name
-                <span class="text-black float-end"><small>@Model.Price.ToString("c")</small></span>
-            </h3>
-            <ul>
-                <li>
-                    Categories:
-                    @foreach (ProductCategory c in Model.ProductCategories)
+        <div class="col-5">
+            <h5>@Model.Name</h5>
+            <h6>
+                @foreach (var c in Model.ProductCategories)
+                {
+                    @c.Category.CategoryName
+                    if (!c.Equals(Model.ProductCategories.Last()))
                     {
-                        @c.Category.CategoryName @: -
+                        @: | 
                     }
-                </li>
-        
-                <li>Product Name: @Model.Name</li>
-            </ul>
-
+                }
+            </h6>
             @* <a href="/ProductDetails?productId=@Model.ProductId" class="btn">Product Details</a> *@
             <a asp-controller="Home" asp-action="ProductDetails" asp-route-productId="@Model.ProductId"><u>Product Details</u></a>
-
+        </div>
+        <div class="col-2">
+            <h4>
+                <span class="text-black float-end"><small>@Model.Price.ToString("c")</small></span>
+            </h4>
             <form asp-page="/Cart" id="@Model.ProductId" method="post">
         
                 <div>
