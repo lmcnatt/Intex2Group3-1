@@ -51,7 +51,7 @@ namespace Intex2.Controllers
         }
         public IActionResult Orders(int pageNum = 1)
         {
-            int pageSize = 500;
+            int pageSize = 200;
 
             var totalItems = _repo.Orders.Count();
             int totalPages = (totalItems + pageSize - 1) / pageSize;

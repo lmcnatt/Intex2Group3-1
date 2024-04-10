@@ -58,10 +58,36 @@
 {
     int totalPages = Model.PaginationInfo.TotalPages;
     int currentPage = Model.PaginationInfo.CurrentPage;
+    int windowSize = 3; // Number of pages to show around the current page
 
-    @for (int i = 1; i <= totalPages; i++)
+    // First and Previous buttons
+    if (currentPage > 1)
+    {
+        <a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="1">First</a>
+        <a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="@(currentPage - 1)">Previous</a>
+    }
+
+    // Show pages around the current page
+    for (int i = Math.Max(1, currentPage - windowSize); i <= Math.Min(totalPages, currentPage + windowSize); i++)
     {
         <a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="@i" class="@(i == currentPage ? "active" : "")">@i</a>
+    }
+
+    // Show ellipsis if there are pages not being shown
+    if (currentPage - windowSize > 1)
+    {
+        <span>...</span>
+    }
+    if (currentPage + windowSize < totalPages)
+    {
+        <span>...</span>
+    }
+
+    // Next and Last buttons
+    if (currentPage < totalPages)
+    {
+        <a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="@(currentPage + 1)">Next</a>
+        <a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="@totalPages">Last</a>
     }
 }
 else
