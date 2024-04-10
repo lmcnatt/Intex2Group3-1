@@ -23,7 +23,7 @@
             </ul>
 
             @* <a href="/ProductDetails?productId=@Model.ProductId" class="btn">Product Details</a> *@
-            <a asp-controller="Home" asp-action="ProductDetails" asp-route-productId="@Model.ProductId"><u>Product Details</u></a>
+            <a asp-controller="Home" asp-action="AdminProductDetails" asp-route-productId="@Model.ProductId"><u>Product Details</u></a>
 
             <form asp-page="/Cart" id="@Model.ProductId" method="post">
 

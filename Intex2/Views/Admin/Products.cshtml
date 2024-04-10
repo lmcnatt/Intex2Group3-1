@@ -15,7 +15,7 @@
 
         @foreach (Product p in Model.Products)
         {
-            <partial name="ProductSummary" model="p" />
+            <partial name="AdminProductSummary" model="p" />
         }
 
         <div page-model="@Model.PaginationInfo" page-action="Products" page-classes-enabled="true" page-class="btn"
