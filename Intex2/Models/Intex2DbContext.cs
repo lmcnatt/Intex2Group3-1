@@ -13,6 +13,7 @@ namespace Intex2.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Recommendation> Recommendations { get; set; }
+        public DbSet<Cart.CartLine> CartLine { get; set;}
 
         // protected override void OnModelCreating(ModelBuilder modelBuilder)
         // {

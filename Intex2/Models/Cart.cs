@@ -36,13 +36,11 @@ namespace Intex2.Models
 
         public int TotalLineItems() => Lines.Count();
 
-        [PrimaryKey(nameof(OrderId), nameof(ProductId))]
         public class CartLine
         {
+            public int CartLineId { get; set; }
             public Order Order {get; set;}
-            public int OrderId { get; set; }
             public Product Product { get; set; }
-            public int ProductId { get; set; }
             public int Quantity { get; set; }
             public int Rating { get; set; }
         }

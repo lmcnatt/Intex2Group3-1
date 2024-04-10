@@ -19,14 +19,14 @@ namespace Intex2.Controllers
             cart = cartService;
         }
 
-        public Customer Customer { get; set; }
-        public string CustomerId { get; set; }
-        public ICollection<Cart.CartLine> Lines { get; set;}
-        public string Date { get; set; }
-        public string DayOfWeek { get; set; }
-        public string Time { get; set; }
-        public decimal Amount { get; set; }
-        public string CountryOfTransaction { get; set; }
+        // public Customer Customer { get; set; }
+        // public string CustomerId { get; set; }
+        // public ICollection<Cart.CartLine> Lines { get; set;}
+        // public string Date { get; set; }
+        // public string DayOfWeek { get; set; }
+        // public string Time { get; set; }
+        // public decimal Amount { get; set; }
+        // public string CountryOfTransaction { get; set; }
         public ViewResult Checkout() => View(new Order());
 
         [HttpPost]
@@ -58,7 +58,6 @@ namespace Intex2.Controllers
             }
             if (ModelState.IsValid)
             {
-                
                 _repo.SaveOrder(order);
                 cart.Clear();
                 return RedirectToPage("/Completed", new { orderId = order.OrderID });

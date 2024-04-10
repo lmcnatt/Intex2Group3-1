@@ -24,6 +24,11 @@ namespace Intex2.Models
             if (order.OrderID == 0)
             {
                 _context.Orders.Add(order);
+                foreach (Cart.CartLine cl in order.Lines)
+                {
+                    _context.CartLine.Add(cl);
+                }
+                
             }
             _context.SaveChanges();
         }
