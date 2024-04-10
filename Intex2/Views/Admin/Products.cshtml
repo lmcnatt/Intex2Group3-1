@@ -1,4 +1,25 @@
 @{
     ViewData["Title"] = "Products";
 }
+
+@model ProductsListViewModel
+
 <h1>@ViewData["Title"]</h1>
+
+<div class="row m-1 p-1">
+    <div class="col-3 ">
+        <h1 class="text-center">Products</h1>
+        <vc:product-types />
+    </div>
+    <div class="container col-9">
+
+        @foreach (Product p in Model.Products)
+        {
+            <partial name="ProductSummary" model="p" />
+        }
+
+        <div page-model="@Model.PaginationInfo" page-action="Products" page-classes-enabled="true" page-class="btn"
+             page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
+             class="btn-group pull-right m-1 custom-card"></div>
+    </div>
+</div>

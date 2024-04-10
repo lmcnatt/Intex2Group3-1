@@ -21,6 +21,11 @@ namespace Intex2.Models
         public void SaveOrder(Order order)
         {
             _context.AttachRange(order.Lines.Select(l => l.Product));
+            foreach (var entry in _context.ChangeTracker.Entries<ProductCategory>())
+            {
+                entry.State = EntityState.Detached;
+            }
+
             if (order.OrderID == 0)
             {
                 _context.Orders.Add(order);
