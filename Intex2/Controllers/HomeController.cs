@@ -7,6 +7,7 @@ using NuGet.ProjectModel;
 using System.ComponentModel;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Microsoft.CodeAnalysis;
 
 namespace Intex2.Controllers
 {
@@ -21,7 +22,7 @@ namespace Intex2.Controllers
 
         public IActionResult Index(int id)
         {
-            var recommendation = _repo.GetRecommendationById(id); // Change variable name to singular
+            var recommendation = _repo.Recommendations.Where(p => p.RecID == id).FirstOrDefault();
             return View(recommendation); // Pass single recommendation to view
         }
 
