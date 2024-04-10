@@ -29,17 +29,17 @@
         {
             <tr>
                 <td class="text-left">@order.OrderID</td>
-                <td class="text-left">@order.CustomerId</td>
-                <td class="text-left">@order.CountryOfTransaction</td>
-                <td class="text-left">@order.Date</td>
-                <td class="text-left">@order.DayOfWeek</td>
-                <td class="text-left">@order.Time</td>
-                <td class="text-left">@order.EntryMode</td>
+                <td class="text-left">@(order.CustomerId ?? "N/A")</td>
+                <td class="text-left">@(order.CountryOfTransaction ?? "N/A")</td>
+                <td class="text-left">@(order.Date ?? "N/A")</td>
+                <td class="text-left">@(order.DayOfWeek ?? "N/A")</td>
+                <td class="text-left">@(order.Time ?? "N/A")</td>
+                <td class="text-left">@(order.EntryMode ?? "N/A")</td>
                 <td class="text-left">@order.Amount</td>
-                <td class="text-left">@order.TypeOfTransaction</td>
-                <td class="text-left">@order.Line1, @order.Line2 <br /> @order.City, @order.State @order.Zip <br />@order.ShippingCountry</td>
-                <td class="text-left">@order.Bank</td>
-                <td class="text-left">@order.TypeOfCard</td>
+                <td class="text-left">@(order.TypeOfTransaction ?? "N/A")</td>
+                <td class="text-left">@(order.Line1 ?? "N/A"), @(order.Line2 ?? "N/A")<br /> @(order.City ?? "N/A"), @(order.State ?? "N/A") @(order.Zip ?? "N/A")<br />@order.ShippingCountry</td>
+                <td class="text-left">@(order.Bank ?? "N/A")</td>
+                <td class="text-left">@(order.TypeOfCard ?? "N/A")</td>
                 <td class="text-left">@order.Fraud</td>
             </tr>
         }
@@ -53,4 +53,4 @@
 <a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="5">5</a>
 <a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="6">6</a>
 <a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="7">7</a>
-<a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="7">8</a>
+<a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="8">8</a>

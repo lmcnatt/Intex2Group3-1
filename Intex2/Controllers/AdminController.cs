@@ -25,7 +25,6 @@ namespace Intex2.Controllers
         {
             return View();
         }
-
         public IActionResult Orders(int pageNum = 1)
         {
             int pageSize = 100;
@@ -47,5 +46,6 @@ namespace Intex2.Controllers
 
             return View(plvm);
         }
+
     }
 }
