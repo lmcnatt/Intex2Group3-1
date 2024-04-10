@@ -50,5 +50,13 @@ namespace Intex2.Models
 
             return customer;
         }
+
+        public IQueryable<Recommendation> Recommendations => _context.Recommendations;
+
+        public Recommendation GetRecommendationById(int id)
+        {
+            return _context.Recommendations.FirstOrDefault(r => r.RecID == id);
+        }
+
     }
 }

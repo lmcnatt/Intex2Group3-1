@@ -19,9 +19,10 @@ namespace Intex2.Controllers
             _repo = repo;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
-            return View();
+            var recommendation = _repo.GetRecommendationById(id); // Change variable name to singular
+            return View(recommendation); // Pass single recommendation to view
         }
 
         public IActionResult Products(string? category, int pageNum = 1)
@@ -81,5 +82,7 @@ namespace Intex2.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }
