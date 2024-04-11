@@ -3,37 +3,39 @@
 <div class="card m-1 p-1 custom-card">
     <div class="row">
         <div class="col-4">
-            <img src="@Model.ImgLink" class="img-thumbnail rounded float-left mx-auto my-auto d-block " />
+            <img src="@Model.ImgLink" class="img-thumbnail rounded float-left mx-auto my-auto d-block" />
         </div>
-        <div class="col-5">
-            <h5>@Model.Name</h5>
+        <div class="col-5 d-flex flex-column">
+            <h4><b>@Model.Name</b></h4>
             <h6>
                 @foreach (var c in Model.ProductCategories)
                 {
                     @c.Category.CategoryName
                     if (!c.Equals(Model.ProductCategories.Last()))
                     {
-                        @: | 
+                        @: |
                     }
                 }
             </h6>
-            @* <a href="/ProductDetails?productId=@Model.ProductId" class="btn">Product Details</a> *@
-            <a asp-controller="Home" asp-action="ProductDetails" asp-route-productId="@Model.ProductId"><u>Product Details</u></a>
+            <a asp-controller="Home" asp-action="ProductDetails" asp-route-productId="@Model.ProductId" class="mt-auto text-dark" style="font-size: 1.rem;"><u>Product Details</u></a>
         </div>
-        <div class="col-2 d-flex flex-column h-100 justify-content-end">
-            <h4>
-                <span class="text-black"><small>@Model.Price.ToString("c")</small></span>
-            </h4>
-            <form asp-page="/Cart" id="@Model.ProductId" method="post" class="mb-auto">
-                <div>
-                    <input type="hidden" asp-for="@Model.ProductId">
-                    <input type="hidden" name="category" value="@ViewContext.HttpContext.Request.Query["category"]" />
-                    <input type="hidden" name="pageNum" value="@ViewContext.HttpContext.Request.Query["pageNum"]" />
-                    <!-- <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" /> -->
-                    <button type="submit" class="short-pill-button">Add to Cart</button>
-                </div>
-            </form>
+        <div class="col-3 d-flex flex-column justify-content-between">
+            <div>
+                <h4>
+                    <span class="text-black float-end"><small>@Model.Price.ToString("c")</small></span>
+                </h4>
+            </div>
+            <div class="d-flex justify-content-end">
+                <form asp-page="/Cart" id="@Model.ProductId" method="post" class="mb-auto">
+                    <div>
+                        <input type="hidden" asp-for="@Model.ProductId">
+                        <input type="hidden" name="category" value="@ViewContext.HttpContext.Request.Query["category"]" />
+                        <input type="hidden" name="pageNum" value="@ViewContext.HttpContext.Request.Query["pageNum"]" />
+                        <button type="submit" class="short-pill-button">Add to Cart</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-
 </div>
+

@@ -1,7 +1,7 @@
 @model Product
 
-<div class="card">
-    <h4>
+<div class="card position-relative">
+    <h4 class="text-end">
         @Model.Name
     </h4>
     <ul>
@@ -16,16 +16,14 @@
         </li>
         <li>Colors: @Model.PrimaryColor and @Model.SecondaryColor</li>
         <li>@Model.Description</li>
-        <li>Our Price: @Model.Price</li>
-        <li><img src="@Model.ImgLink"/></li>
+        <li class="text-end">Our Price: @Model.Price</li>
+        <li><img src="@Model.ImgLink" /></li>
     </ul>
 
-    <form asp-page="/Cart" id="@Model.ProductId" method="post">
+    <form asp-page="/Cart" id="@Model.ProductId" method="post" class="position-absolute bottom-0 end-0">
         <input type="hidden" asp-for="@Model.ProductId">
         <input type="hidden" name="category" value="@ViewContext.HttpContext.Request.Query["category"]" />
         <input type="hidden" name="pageNum" value="@ViewContext.HttpContext.Request.Query["pageNum"]" />
-        @* <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" /> *@
-        <button type="submit" class="btn btn-success btn-sm float-end">Add to Cart</button>
+        <button type="submit" class="btn btn-success btn-sm">Add to Cart</button>
     </form>
-
 </div>

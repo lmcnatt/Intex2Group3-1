@@ -53,9 +53,9 @@ body {
 .product-card{
     border-color: #F5F5F5;
     background-color: #F5F5F5;
-    margin: 20px 10px;
+    margin: 20px 20px;
 }
-
+\
 .pill-button {
     border: 2px solid #237841; /* Change the color code to set the outline color */
     border-radius: 50px; /* This creates the pill shape */
@@ -92,4 +92,12 @@ body {
 
 .more-link {
     text-decoration: none; /* Remove underline */
+}
+
+.img {
+    object-fit: contain;
+    max-width: 100%; /* Adjust this value as needed */
+    max-height: 100%; /* Adjust this value as needed */
+    width: auto;
+    height: auto;
 }
