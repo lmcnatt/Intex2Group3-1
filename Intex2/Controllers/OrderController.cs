@@ -3,6 +3,9 @@ using Intex2.Models;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using Microsoft.ML;
+using Microsoft.ML.OnnxRuntime;
+using Microsoft.ML.OnnxRuntime.Tensors;
 
 namespace Intex2.Controllers
 {
@@ -12,11 +15,12 @@ namespace Intex2.Controllers
         private IOrderRepository _repo;
         private Cart cart;
         DateTime datetime = DateTime.Now;
-
-        public OrderController(IOrderRepository repoService, Cart cartService)
+        private InferenceSession _session;
+        public OrderController(IOrderRepository repoService, Cart cartService) //,InferenceSession session)
         {
             _repo = repoService;
             cart = cartService;
+            //_session = session;
         }
 
         // public Customer Customer { get; set; }

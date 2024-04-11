@@ -22,15 +22,15 @@ namespace Intex2.Models
         public string TypeOfTransaction { get; set; } = "Online";
 
         [Required(ErrorMessage = "Please enter the first address line")]
-        public string? Line1 { get; set; }
-        public string? Line2 { get; set; }
+        public string? ShippingAddress { get; set; }
+
 
         [Required(ErrorMessage = "Please enter a city name")]
         public string? City { get; set; }
 
         [Required(ErrorMessage = "Please enter a state name")]
         public string? State { get; set; }
-
+        [Required(ErrorMessage = "Please enter a zip code")]
         public string? Zip { get; set; }
 
         [Required(ErrorMessage = "Please enter a country name")]
