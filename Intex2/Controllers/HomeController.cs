@@ -39,7 +39,7 @@ namespace Intex2.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var userId = _userManager.GetUserId(User);
-                id = _repo.GetHighestRating(userId);
+                id = _repo.GetMostPurchased(userId);
                 
             }
             if (id != 0)
