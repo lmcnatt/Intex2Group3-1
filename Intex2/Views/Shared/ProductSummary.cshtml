@@ -8,14 +8,6 @@
         <div class="col-5">
             <h5>@Model.Name</h5>
             <h6>
-                @foreach (var c in Model.ProductCategories)
-                {
-                    @c.Category.CategoryName
-                    if (!c.Equals(Model.ProductCategories.Last()))
-                    {
-                        @: | 
-                    }
-                }
             </h6>
             @* <a href="/ProductDetails?productId=@Model.ProductId" class="btn">Product Details</a> *@
             <a asp-controller="Home" asp-action="ProductDetails" asp-route-productId="@Model.ProductId"><u>Product Details</u></a>

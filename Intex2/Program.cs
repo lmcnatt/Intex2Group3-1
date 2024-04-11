@@ -11,11 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-var connectionString = builder.Configuration.GetConnectionString("Intex2Connection") ?? throw new InvalidOperationException("Connection string 'Intex2Connection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("BrickwellCreationsConnection") ?? throw new InvalidOperationException("Connection string 'BrickwellCreationsConnection' not found.");
 
 builder.Services.AddDbContext<IntexDbContext>(options =>
-    //options.UseSqlServer(connectionString));
-    options.UseSqlite(connectionString));
+    options.UseSqlServer(connectionString));
+//options.UseSqlite(connectionString));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

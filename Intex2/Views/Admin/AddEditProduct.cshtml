@@ -1,3 +1,17 @@
 @{
     ViewData["Title"] = "Add/Edit Product";
 }
+
+@model EditProductsViewModel
+@Html.CheckBox("isActive", true)
+
+<div class="card">
+    <form method="post">
+        <input type="hidden" asp-for="@Model.Product.ProductId">
+
+        <div class="input-group">
+            <div class="form-check">
+            </div>
+        </div>
+    </form>
+</div>

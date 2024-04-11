@@ -4,7 +4,6 @@
 
 @model ProductsListViewModel
 
-
 <div class="row m-1 p-1">
     <div class="col-3 ">
         <h1 class="text-center">Products</h1>
@@ -14,7 +13,25 @@
 
         @foreach (Product p in Model.Products)
         {
-            <partial name="AdminProductSummary" model="p" />
+            <div class="card m-1 p-1 custom-card">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="@p.ImgLink" class="img-thumbnail rounded float-left mx-auto my-auto d-block " />
+                    </div>
+                    <div class="col-5">
+                        <h5>@p.Name</h5>
+                        <h6>
+                            @p.Category.CategoryName
+                        </h6>
+                    </div>
+                    <div class="col-2 d-flex flex-column h-100 justify-content-end">
+                        <h4>
+                            <span class="text-black"><small>@p.Price.ToString("c")</small></span>
+                        </h4>
+                        <a class="short-pill-button" asp-controller="Admin" asp-action="AddEditProduct" asp-route-productId="@p.ProductId"><u>Edit Product</u></a>
+                    </div>
+                </div>
+            </div>
         }
 
         <div page-model="@Model.PaginationInfo" page-action="AdminProducts" page-classes-enabled="true" page-class="btn"

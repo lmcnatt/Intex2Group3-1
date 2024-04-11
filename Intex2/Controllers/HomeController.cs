@@ -100,10 +100,7 @@ namespace Intex2.Controllers
             var plvm = new ProductsListViewModel
             {
                 Products = _repo.Products
-                    .Where(x => _repo.ProductCategories
-                        .Where(pc => pc.Category.CategoryName == category)
-                        .Select(pc => pc.ProductId)
-                        .Contains(x.ProductId) || category == null)
+                    .Where(x => x.Category.CategoryName == category)
                     .OrderBy(x => x.Name)
                     .Skip((pageNum - 1) * pageSize)
                     .Take(pageSize),
@@ -112,10 +109,7 @@ namespace Intex2.Controllers
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = category == null ? _repo.Products.Count() : _repo.Products.Where(x => _repo.ProductCategories
-                        .Where(pc => pc.Category.CategoryName == category)
-                        .Select(pc => pc.ProductId)
-                        .Contains(x.ProductId)).Count()
+                    TotalItems = category == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category.CategoryName == category).Count()
                 },
                 CurrentCategory = category
             };
