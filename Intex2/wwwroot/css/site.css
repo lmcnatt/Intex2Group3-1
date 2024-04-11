@@ -25,6 +25,10 @@ body {
   margin-bottom: 60px;
 }
 
+footer{
+    height: auto
+}
+
 .bottom-center {
     display: flex;
     justify-content: center;
@@ -34,15 +38,15 @@ body {
 }
 
 #cookie-notification {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #f0f0f0;
-  padding: 20px;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  z-index: 9999;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #F5F5F5;
+    padding: 20px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    z-index: 9999;
 }
 
 #cookie-content {
@@ -146,17 +150,35 @@ body {
     height: 80px;
 }
 
+.social-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: #D9D9D9;
+    height: 40px;
+}
+
 .highlighted-rows {
-    width: 100%; /* Adjust the width as needed */
-    border-collapse: collapse; /* Ensures that the borders between cells are collapsed */
+    width: 100%;
+    border-collapse: collapse;
 }
 
     .highlighted-rows td,
     .highlighted-rows th {
-        padding: 10px; /* Adds some padding inside the cells */
+        padding: 10px;
     }
 
     .highlighted-rows tbody tr:not(:first-child) {
+        background-color: #f0f0f0; 
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
         background-color: #f0f0f0; /* Light grey background color */
         padding-top: 10px; /* Adds white space above each row */
         padding-bottom: 10px; /* Adds white space below each row */
