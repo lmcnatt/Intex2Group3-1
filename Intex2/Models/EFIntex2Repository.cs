@@ -58,11 +58,8 @@ namespace Intex2.Models
         {
             return _context.Recommendations.FirstOrDefault(r => r.RecId == id);
         }
-        public int GetHighestRating(string userId)
-{
-        int productId = 0;
-
-        var result = _context.Customers
+        public IQueryable<Customer> CustomerOrders =>
+         (IQueryable<Customer>)_context.Customers
             .Include(c => c.Orders)
             .ThenInclude(o => o.Lines)
             .Select(c => new Customer{ 
@@ -72,17 +69,46 @@ namespace Intex2.Models
                 BirthDate = c.BirthDate,
                 CountryOfResidence = c.CountryOfResidence,
                 Gender = c.Gender,
-                Age = c.Age, })
-            .Where(c => c.CustomerId == userId)
+                Age = c.Age, 
+                Orders = (ICollection<Order>)c.Orders.Select(o => new Order
+                                        {
+                                            OrderID = o.OrderID,
+                                            CountryOfTransaction = o.CountryOfTransaction,
+                                            Date = o.Date,
+                                            DayOfWeek = o.DayOfWeek,
+                                            Time = o.Time,
+                                            EntryMode = o.EntryMode,
+                                            Amount = o.Amount,
+                                            TypeOfTransaction = o.TypeOfTransaction,
+                                            ShippingAddress = o.ShippingAddress,
+                                            City = o.City,
+                                            State = o.State,
+                                            Zip = o.Zip,
+                                            ShippingCountry = o.ShippingCountry,
+                                            Bank = o.Bank,
+                                            TypeOfCard = o.TypeOfCard,
+                                            Fraud = o.Fraud,
+                                            Lines = (ICollection<Cart.CartLine>)o.Lines.Select(cl => new Cart.CartLine
+                                                                    {
+                                                                        Quantity = cl.Quantity,
+                                                                        Rating = cl.Rating
+                                                                    })
+
+                                        })
+                })
             .FirstOrDefault();
-
-        if (result != null)
+        public int GetMostPurchased(string userId)
         {
-            productId = result.ProductId;
-        }
+            var mostPurchasedProductId = _context.CustomerOrders
+                .Where(c => c.CustomerId == userId)
+                .SelectMany(c => c.Orders.SelectMany(o => o.Lines)) // Flatten Orders and Lines
+                .GroupBy(cl => cl.Product.ProductId) // Group by ProductId
+                .OrderByDescending(g => g.Sum(cl => cl.Quantity)) // Order by the sum of Quantity
+                .Select(g => g.Key) // Select the ProductId
+                .FirstOrDefault(); // Get the first ProductId
 
-        return productId;
-    }
+            return mostPurchasedProductId;
+        }
 
     }
 }
