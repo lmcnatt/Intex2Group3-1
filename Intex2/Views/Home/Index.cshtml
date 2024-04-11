@@ -32,9 +32,10 @@
 
 @* Homepage Content *@
 <div>
-    <img src="~/img/newlanding-cropped.png" alt="Build, Create, Inspire" class="img-fluid" style="object-fit: cover;">
+    <img src="~/img/newlanding-cropped.png" alt="Build, Create, Inspire" class="img-fluid" style="object-fit: cover; border-radius: 10px;">
 </div>
 
+@* Recommendations *@
 <br /><br />
 <body>
     <div class="row">
@@ -51,41 +52,96 @@
             </a>
         </div>
     </div>
+    <br />
+    <br />
+
+@* Information Boxes *@
     <div class="row">
         <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body context-card" style="align-content:center">
-                    <img src="~/img/person.jpeg" alt="Learn More" class="icon" >
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="short-pill-button">Go somewhere</a>
+            <div class="card" style="border-radius: 10px; height: 420px; border-color:white; outline-color:white">
+                <div class="card-body context-card" style="text-align: center; border-color: #237841; border-style: solid; border-width: 2px; border-radius: 10px;">
+                    <img src="~/img/person.jpeg" alt="Learn More" class="icon">
+                    <br /><br />
+                    <h3 class="card-title">Learn More</h3>
+                    <br />
+                    <p class="card-text lead">Meet the team behind the bricks—where passion for LEGO and community comes together. Learn more about us!</p>
+                    <br />
+                    <div class="d-grid gap-2">
+                        <a asp-controller="Home" asp-action="About" class="short-pill-button" >About Us</a>
+                    </div>
+                    <br />
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <img src="~/img/legoheadicon.png" alt="Learn More" class="icon">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="short-pill-button">Go somewhere</a>
+            <div class="card" style="border-radius: 10px; height: 420px; border-color:white; outline-color:white">
+                <div class="card-body context-card" style="text-align: center; border-color: #237841; border-style: solid; border-width: 2px; border-radius: 10px;">
+                    <div class="text-align:center">
+                        <img src="~/img/legoheadicon.png" alt="Learn More" class="icon" style="height: 60px">
+                    </div>
+                    <br /><br />
+                    <h3 class="card-title">Shop Products</h3>
+                    <br />
+                    <p class="card-text lead">Discover the latest LEGO sets, all in one place. Browse our inventory to start building your new favorites now!</p>
+                    <br />
+                    <div class="d-grid gap-2">
+                        <a asp-controller="Home" asp-action="Products" class="short-pill-button">Shop</a>
+                    </div>
+                    <br />
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
+            <div class="card" style="border-radius: 10px; height: 420px; border-color:white; outline-color:white">
+                <div class="card-body context-card" style="text-align: center; border-color: #237841; border-style: solid; border-width: 2px; border-radius: 10px;">
                     <img src="~/img/account.png" alt="Learn More" class="icon">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="short-pill-button">Go somewhere</a>
+                    <br /><br />
+                    <h3 class="card-title">Create Account</h3>
+                    <br />
+                    <p class="card-text lead">Start your build! Create an account to make purchases and bring your LEGO dreams to life.</p>
+                    <br />
+                    <div class="d-grid gap-2">
+                        <a asp-controller="Home" asp-action="Register" class="short-pill-button">Create Account</a>
+                    </div>
+                    <br />
                 </div>
             </div>
         </div>
     </div>
+    <br />
+    <br />
+    <br />
+
+@* Social Media Reach *@
+    <div class="card-body rounded-box text-center" style="text-align: center;">
+        <div class="row" style="text-align: center;">
+            <h2 style="text-align: center;">#HappyBricking</h2>
+        <div class="row">
+            <div class="col-3 col-lg-3 col-sm-3">
+                <img src="~/img/building2.png" class="img-fluid">
+            </div>
+            <div class="col-3 col-lg-3 col-sm-3">
+                <img src="~/img/camera2.png" class="img-fluid">
+            </div>
+            <div class="col-3 col-lg-3 col-sm-3">
+                <img src="~/img/building2.png" class="img-fluid">
+            </div>
+            <div class="col-3 col-lg-3 col-sm-3">
+                <img src="~/img/rocket2.png" class="img-fluid">
+            </div>
+        </div>
+
+        <div class="row" style="text-align: center;">
+                <p class="lead">
+                    <br />
+                    Follow <b>@@AuroraBrickwell</b> to stay up to date on products, inspiration, and features.<br />
+                    Use the hashtag #HappyBricking for a chance to be featured!
+                </p>
+        </div>
+</div>
 
 
-  @*   @foreach (var product in Model)
+    @foreach (var product in Model)
     {
         <strong>Product ID:</strong> @product.ProductId
         <br />
@@ -94,7 +150,7 @@
         <strong>Price:</strong> @product.Price
         <br />
     }
- *@
+
 
     @{
         if (User.Identity.IsAuthenticated)

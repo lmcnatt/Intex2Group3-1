@@ -142,14 +142,8 @@ body {
     height: auto;
 }
 
-.content-card {
-    border-color: #4176B5;
-    background-color: #4176B5;
-    opacity: 0.5;
-}
-
 .icon {
-    height: 50px;
+    height: 80px;
 }
 
 .highlighted-rows {
@@ -167,3 +161,23 @@ body {
         padding-top: 10px; /* Adds white space above each row */
         padding-bottom: 10px; /* Adds white space below each row */
     }
+
+.custom-row {
+    display: flex;
+    align-items: stretch;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    flex-grow: 1;
+}
+
+.rounded-box {
+    border-radius: 10px; /* Adjust this value to change the roundness */
+    background-color: #f8f9fa; /* Optional: Set a background color */
+    padding: 20px; /* Optional: Add some padding inside the box */
+}
