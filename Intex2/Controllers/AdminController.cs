@@ -15,7 +15,7 @@ namespace Intex2.Controllers
         {
             _repo = repoService;
         }
-        public IActionResult Products(string? category, int pageNum = 1)
+        public IActionResult AdminProducts(string? category, int pageNum = 1)
         {
             int pageSize = 5;
 

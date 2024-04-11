@@ -36,12 +36,12 @@ namespace Intex2.Controllers
             // else (id = form input)
             int id = 0;
 
-            if (User.Identity.IsAuthenticated)
-            {
-                var userId = _userManager.GetUserId(User);
-                id = _repo.GetMostPurchased(userId);
+            // if (User.Identity.IsAuthenticated)
+            // {
+            //     var userId = _userManager.GetUserId(User);
+            //     // id = _repo.GetHighestRating(userId);
                 
-            }
+            // }
             if (id != 0)
             {
                 // Assuming _repo.Recommendations is a DbSet or similar that allows querying
