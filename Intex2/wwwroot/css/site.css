@@ -106,7 +106,8 @@ footer{
     color: #C91A09; /* Change the color code to set the text color */
     padding: 5px 80px; /* Adjust padding as needed */
     cursor: pointer; /* Add pointer cursor for better UX */
-    transition: background-color 0.3s, color 0.3s; /* Add smooth transition effect */
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
 }
 
     .red-pill-button:hover {
