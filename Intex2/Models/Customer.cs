@@ -14,5 +14,6 @@ namespace Intex2.Models
         public string CountryOfResidence { get; set; }
         public string Gender { get; set; }
         public int Age { get; set; }
+        public virtual ICollection<Order>? Orders { get; set; } = new List<Order>();
     }
 }

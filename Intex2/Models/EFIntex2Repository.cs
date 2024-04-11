@@ -58,24 +58,31 @@ namespace Intex2.Models
         {
             return _context.Recommendations.FirstOrDefault(r => r.RecId == id);
         }
-        public int GetHighestRating (string userId)
+        public int GetHighestRating(string userId)
+{
+        int productId = 0;
+
+        var result = _context.Customers
+            .Include(c => c.Orders)
+            .ThenInclude(o => o.Lines)
+            .Select(c => new Customer{ 
+                CustomerId = c.CustomerId, 
+                FirstName = c.FirstName,
+                LastName = c.LastName,
+                BirthDate = c.BirthDate,
+                CountryOfResidence = c.CountryOfResidence,
+                Gender = c.Gender,
+                Age = c.Age, })
+            .Where(c => c.CustomerId == userId)
+            .FirstOrDefault();
+
+        if (result != null)
         {
-            int productId = 0;
-            var result = _context.Set<ProductQuantity>()
-                .FromSqlInterpolated($@"SELECT CL.ProductID, SUM(CL.Quantity) as Quantity
-                FROM Customers C
-                JOIN Orders O ON O.CustomerId = C.CustomerId
-                JOIN CartLine CL ON CL.OrderId = O.OrderId
-                WHERE C.CustomerId = {userId}
-                GROUP BY CL.ProductId
-                ORDER BY SUM(CL.Quantity) DESC
-                LIMIT 1").FirstOrDefault();
-            if (result != null)
-            {
-                productId = result.ProductId;
-            }
-            return productId;
+            productId = result.ProductId;
         }
+
+        return productId;
+    }
 
     }
 }
