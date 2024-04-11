@@ -58,31 +58,31 @@ namespace Intex2.Models
         {
             return _context.Recommendations.FirstOrDefault(r => r.RecId == id);
         }
-        public int GetHighestRating(string userId)
-{
-        int productId = 0;
+//         public int GetHighestRating(string userId)
+// {
+//         int productId = 0;
 
-        var result = _context.Customers
-            .Include(c => c.Orders)
-            .ThenInclude(o => o.Lines)
-            .Select(c => new Customer{ 
-                CustomerId = c.CustomerId, 
-                FirstName = c.FirstName,
-                LastName = c.LastName,
-                BirthDate = c.BirthDate,
-                CountryOfResidence = c.CountryOfResidence,
-                Gender = c.Gender,
-                Age = c.Age, })
-            .Where(c => c.CustomerId == userId)
-            .FirstOrDefault();
+//         var result = _context.Customers
+//             .Include(c => c.Orders)
+//             .ThenInclude(o => o.Lines)
+//             .Select(c => new Customer{ 
+//                 CustomerId = c.CustomerId, 
+//                 FirstName = c.FirstName,
+//                 LastName = c.LastName,
+//                 BirthDate = c.BirthDate,
+//                 CountryOfResidence = c.CountryOfResidence,
+//                 Gender = c.Gender,
+//                 Age = c.Age, })
+//             .Where(c => c.CustomerId == userId)
+//             .FirstOrDefault();
 
-        if (result != null)
-        {
-            productId = result.ProductId;
-        }
+//         if (result != null)
+//         {
+//             productId = result.ProductId;
+//         }
 
-        return productId;
-    }
+//         return productId;
+//     }
 
     }
 }

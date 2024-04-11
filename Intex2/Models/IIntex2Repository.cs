@@ -11,7 +11,7 @@
         public Customer GetCustomer(string id);
         public IQueryable<Recommendation> Recommendations { get; }
         public Recommendation GetRecommendationById(int id);
-        public int GetHighestRating (string userId);
+        // public int GetHighestRating (string userId);
 
     }
 }
