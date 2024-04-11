@@ -27,32 +27,65 @@ namespace Intex2.Controllers
             
         }
 
-        public IActionResult Index(int id = 1)
+        public IActionResult Index()
         {
-            // Assuming _repo.Recommendations is a DbSet or similar that allows querying
-            var recommendation = _repo.Recommendations.FirstOrDefault(r => r.RecId == id);
+            // if static (id = 0) then populate top 10
+            // else (id = form input)
+            var id = 0;
 
-            // Prepare a list to hold the recommended products
-            var recommendedProducts = new List<Product>();
-
-            // Loop through each recommendation column (rec1 to rec10)
-            for (int i = 1; i <= 10; i++)
+            if (User.Identity.IsAuthenticated != null)
             {
-                // Retrieve the product ID for the current recommendation column
-                var recId = (int)typeof(Recommendation).GetProperty($"Rec{i}").GetValue(recommendation);
+                // id = User.Identity.GetUserId(); // we need to write this method
+            }
+            if (id != 0)
+            {
+                // Assuming _repo.Recommendations is a DbSet or similar that allows querying
+                var recommendation = _repo.Recommendations.FirstOrDefault(r => r.RecId == id);
 
-                // Retrieve the product details for the current recommendation ID
-                var product = _repo.Products.FirstOrDefault(p => p.ProductId == recId);
+                // Prepare a list to hold the recommended products
+                var recommendedProducts = new List<Product>();
 
-                // Add the product to the list if it exists
-                if (product != null)
+                // Loop through each recommendation column (rec1 to rec10)
+                for (int i = 1; i <= 10; i++)
                 {
-                    recommendedProducts.Add(product);
+                    // Retrieve the product ID for the current recommendation column
+                    var recId = (int)typeof(Recommendation).GetProperty($"Rec{i}").GetValue(recommendation);
+
+                    // Retrieve the product details for the current recommendation ID
+                    var product = _repo.Products.FirstOrDefault(p => p.ProductId == recId);
+
+                    // Add the product to the list if it exists
+                    if (product != null)
+                    {
+                        recommendedProducts.Add(product);
+                    }
                 }
+
+                return View(recommendedProducts);
             }
 
+            else
+            {
+                int[] topTen = { 23, 19, 21, 22, 20, 12, 18, 15, 11, 13 };
+                var recommendedProducts = new List<Product>();
+
+                foreach (var productId in topTen)
+                {
+                        var product = _repo.Products.FirstOrDefault(p => p.ProductId == productId);
+                        if (product != null)
+                        {
+                            recommendedProducts.Add(product);
+                        }
+                }
+
+                return View(recommendedProducts);
+
+            }
+
+
+
             // Pass the list of recommended products to the view
-            return View(recommendedProducts);
+            ;
         }
 
         public IActionResult Products(string? category, int pageNum = 1)

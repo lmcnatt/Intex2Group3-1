@@ -76,7 +76,7 @@ body {
     border-radius: 50px; /* This creates the pill shape */
     background-color: transparent; /* Makes the background transparent */
     color: #237841; /* Change the color code to set the text color */
-    padding: 10px 30px; /* Adjust padding as needed */
+    padding: 10px 22px; /* Adjust padding as needed */
     cursor: pointer; /* Add pointer cursor for better UX */
     transition: background-color 0.3s, color 0.3s; /* Add smooth transition effect */
 }

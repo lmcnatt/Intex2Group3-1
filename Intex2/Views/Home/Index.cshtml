@@ -58,17 +58,34 @@
     }
 
 
-    @* <h1>Recommendations</h1>
-    
-    <p>@Model.Rec1</p>
-    
-    @foreach (var product in recommendation.Products)
-            {
-                <li>
-                    
-                    <!-- Display other properties of Product as needed -->
-                </li>
-            }
+    @{
+        if (User.Identity.IsAuthenticated)
+        {
 
-     *@
+            // var cartLines = ViewBag.CartLines as List<CartLine>;
+            // var orders = ViewBag.Orders as List<Order>;
+
+            // // Perform the LINQ query
+            // var query = cartLines.Join(orders, cl => cl.OrderId, o => o.OrderId, (cl, o) => new { cl, o })
+            // .Where(x => x.o.CustomerId == 1)
+            // .GroupBy(x => x.cl.ProductId)
+            // .OrderByDescending(g => g.Sum(x => x.cl.Quantity))
+            // .Select(g => new { ProductId = g.Key, TotalQuantity = g.Sum(x => x.cl.Quantity) });
+
+            // // Display the results
+            // foreach (var item in query)
+            // {
+            //     <p>Product ID: @item.ProductId</p>
+            //     <p>Total Quantity: @item.TotalQuantity</p>
+            // }
+        }
+
+        else
+        {
+            // Handle the case where the user is not authenticated
+            // For example, you might want to query a different set of data
+        }
+    }
+
+
 </body>

@@ -20,18 +20,17 @@
             @* <a href="/ProductDetails?productId=@Model.ProductId" class="btn">Product Details</a> *@
             <a asp-controller="Home" asp-action="ProductDetails" asp-route-productId="@Model.ProductId"><u>Product Details</u></a>
         </div>
-        <div class="col-2">
+        <div class="col-2 d-flex flex-column h-100 justify-content-end">
             <h4>
-                <span class="text-black float-end"><small>@Model.Price.ToString("c")</small></span>
+                <span class="text-black"><small>@Model.Price.ToString("c")</small></span>
             </h4>
-            <form asp-page="/Cart" id="@Model.ProductId" method="post">
-        
+            <form asp-page="/Cart" id="@Model.ProductId" method="post" class="mb-auto">
                 <div>
                     <input type="hidden" asp-for="@Model.ProductId">
                     <input type="hidden" name="category" value="@ViewContext.HttpContext.Request.Query["category"]" />
                     <input type="hidden" name="pageNum" value="@ViewContext.HttpContext.Request.Query["pageNum"]" />
-                    @* <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" /> *@
-                    <button type="submit" class="short-pill-button float-end mt-auto">Add to Cart</button>
+                    <!-- <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" /> -->
+                    <button type="submit" class="short-pill-button">Add to Cart</button>
                 </div>
             </form>
         </div>
