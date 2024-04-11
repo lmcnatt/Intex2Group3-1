@@ -1,17 +1,17 @@
 @model Product
 
-<div class="card position-relative">
-    <h4 class="text-end">
+@{
+    ViewData["Title"] = @Model.Name;
+}
+
+<div class="card">
+    <h4>
         @Model.Name
     </h4>
     <ul>
         <li>Product Name: @Model.Name</li>
         <li>
             Categories:
-            @foreach (ProductCategory c in Model.ProductCategories)
-            {
-                @c.Category.CategoryName @: -
-            }
             | Created in: @Model.Year | @Model.NumParts Pieces
         </li>
         <li>Colors: @Model.PrimaryColor and @Model.SecondaryColor</li>

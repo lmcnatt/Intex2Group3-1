@@ -4,7 +4,7 @@ namespace Intex2.Models
     {
         IQueryable<Product> Products { get; }
         IQueryable<Order> Orders { get; }
-        IQueryable<ProductCategory> ProductCategories { get; }
+        IQueryable<Category> Categories { get; }
 
     }
 }

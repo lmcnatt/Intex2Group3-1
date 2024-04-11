@@ -16,11 +16,12 @@ namespace Intex2.Controllers
         private Cart cart;
         DateTime datetime = DateTime.Now;
         private InferenceSession _session;
-        public OrderController(IOrderRepository repoService, Cart cartService) //,InferenceSession session)
+        public OrderController(IOrderRepository repoService, Cart cartService)
         {
             _repo = repoService;
             cart = cartService;
-            //_session = session;
+            string modelPath = "fraud_onnx_model.onnx";
+            _session = new InferenceSession(modelPath);
         }
 
         // public Customer Customer { get; set; }
@@ -54,7 +55,28 @@ namespace Intex2.Controllers
             order.Time = datetime.ToString("HH");
             order.Amount = cart.CalculateTotal();
             order.CountryOfTransaction = customer.CountryOfResidence;
-
+    
+            float[] data = [float.Parse(order.Time), 
+            (float)order.Amount,order.CountryOfTransaction == "United Kingdom" ? 1 : 0,];
+        
+            int[] dimensions = new int[] {1, 3 };
+            
+    
+            var result = _session.Run(new List<NamedOnnxValue> 
+            { 
+                NamedOnnxValue.CreateFromTensor("float_input", new DenseTensor<float>(data, dimensions)) 
+            });
+            Tensor<float> score = result.First().AsTensor<float>();
+            var prediction = score.First();
+            result.Dispose();
+            if (prediction == 1)
+            {
+                order.Fraud = true;
+            }
+            else
+            {
+                order.Fraud = false;
+            }
             if (cart.Lines.Count() == 0)
             {
                 ModelState.AddModelError("",
@@ -64,7 +86,15 @@ namespace Intex2.Controllers
             {
                 _repo.SaveOrder(order);
                 cart.Clear();
-                return RedirectToPage("/Completed", new { orderId = order.OrderID });
+                if (order.Fraud == false)
+                {
+                   return RedirectToPage("/Completed", new { orderId = order.OrderID }); 
+                }
+                else
+                {
+                    return RedirectToPage("/CompletedFraud", new { orderId = order.OrderID }); 
+                }
+                
             }
             else
             {

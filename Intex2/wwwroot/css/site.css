@@ -25,6 +25,14 @@ body {
   margin-bottom: 60px;
 }
 
+.bottom-center {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    padding: 20px 0; /* Adjust padding as needed */
+}
+
 #cookie-notification {
   position: fixed;
   bottom: 0;
@@ -87,6 +95,37 @@ body {
         color: #fff; /* Change the color code to set the hover text color */
     }
 
+.red-pill-button {
+    border: 2px solid #C91A09; /* Change the color code to set the outline color */
+    border-radius: 50px; /* This creates the pill shape */
+    background-color: transparent; /* Makes the background transparent */
+    color: #C91A09; /* Change the color code to set the text color */
+    padding: 5px 80px; /* Adjust padding as needed */
+    cursor: pointer; /* Add pointer cursor for better UX */
+    transition: background-color 0.3s, color 0.3s; /* Add smooth transition effect */
+}
+
+    .red-pill-button:hover {
+        background-color: #C91A09; /* Change the color code to set the hover background color */
+        color: #fff; /* Change the color code to set the hover text color */
+    }
+
+.blue-pill-button {
+    border: 2px solid #4176B5; /* Change the color code to set the outline color */
+    border-radius: 50px; /* This creates the pill shape */
+    background-color: transparent; /* Makes the background transparent */
+    color: #4176B5; /* Change the color code to set the text color */
+    padding: 5px 80px; /* Adjust padding as needed */
+    cursor: pointer; /* Add pointer cursor for better UX */
+    transition: background-color 0.3s, color 0.3s; /* Add smooth transition effect */
+    text-decoration: none;
+}
+
+    .blue-pill-button:hover {
+        background-color: #4176B5; /* Change the color code to set the hover background color */
+        color: #fff; /* Change the color code to set the hover text color */
+    }
+
 .subtext {
     color: #5A5A5A;
 }
@@ -112,3 +151,19 @@ body {
 .icon {
     height: 50px;
 }
+
+.highlighted-rows {
+    width: 100%; /* Adjust the width as needed */
+    border-collapse: collapse; /* Ensures that the borders between cells are collapsed */
+}
+
+    .highlighted-rows td,
+    .highlighted-rows th {
+        padding: 10px; /* Adds some padding inside the cells */
+    }
+
+    .highlighted-rows tbody tr:not(:first-child) {
+        background-color: #f0f0f0; /* Light grey background color */
+        padding-top: 10px; /* Adds white space above each row */
+        padding-bottom: 10px; /* Adds white space below each row */
+    }

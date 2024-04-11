@@ -8,14 +8,6 @@
         <div class="col-5 d-flex flex-column">
             <h4><b>@Model.Name</b></h4>
             <h6>
-                @foreach (var c in Model.ProductCategories)
-                {
-                    @c.Category.CategoryName
-                    if (!c.Equals(Model.ProductCategories.Last()))
-                    {
-                        @: |
-                    }
-                }
             </h6>
             <a asp-controller="Home" asp-action="ProductDetails" asp-route-productId="@Model.ProductId" class="mt-auto text-dark" style="font-size: 1.rem;"><u>Product Details</u></a>
         </div>

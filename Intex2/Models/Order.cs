@@ -2,6 +2,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using static Intex2.Models.Cart;
+using Microsoft.ML;
+using Microsoft.ML.OnnxRuntime;
+using Microsoft.ML.OnnxRuntime.Tensors;
 
 namespace Intex2.Models
 {
@@ -41,5 +44,7 @@ namespace Intex2.Models
         public string? TypeOfCard { get; set; }
 
         public bool Fraud { get; set; } = false;
+
+       
     }
 }

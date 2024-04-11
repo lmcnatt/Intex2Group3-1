@@ -13,28 +13,9 @@ namespace Intex2.Models
         }
 
         public IQueryable<Product> Products => _context.Products
-            .Include(p => p.ProductCategories)
-            .ThenInclude(pc => pc.Category)
-            .Select(p => new Product
-            {
-                ProductId = p.ProductId,
-                Name = p.Name,
-                Year = p.Year,
-                NumParts = p.NumParts,
-                Price = p.Price,
-                ImgLink = p.ImgLink,
-                PrimaryColor = p.PrimaryColor,
-                SecondaryColor = p.SecondaryColor,
-                Description = p.Description,
-                ProductCategories = (ICollection<ProductCategory>)p.ProductCategories
-                    .Select(pc => new ProductCategory
-                    {
-                        Category = pc.Category,
-                        CategoryId = pc.CategoryId
-                    })
-            });
+            .Include(p => p.Category);
 
-        public IQueryable<ProductCategory> ProductCategories => _context.ProductCategories;
         public IQueryable<Order> Orders => _context.Orders;
+        public IQueryable<Category> Categories => _context.Categories;
     }
 }

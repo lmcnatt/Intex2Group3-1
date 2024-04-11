@@ -54,43 +54,45 @@
     </tbody>
 </table>
 
-@if (Model?.PaginationInfo != null)
-{
-    int totalPages = Model.PaginationInfo.TotalPages;
-    int currentPage = Model.PaginationInfo.CurrentPage;
-    int windowSize = 3; // Number of pages to show around the current page
+<ul class="pagination">
+    @if (Model?.PaginationInfo != null)
+    {
+        int totalPages = Model.PaginationInfo.TotalPages;
+        int currentPage = Model.PaginationInfo.CurrentPage;
+        int windowSize = 3; // Number of pages to show around the current page
 
-    // First and Previous buttons
-    if (currentPage > 1)
-    {
-        <a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="1">First</a>
-        <a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="@(currentPage - 1)">Previous</a>
-    }
+        // First and Previous buttons
+        if (currentPage > 1)
+        {
+            <li class="page-item"><a class="page-link" asp-controller="Admin" asp-action="Orders" asp-route-pageNum="1">First</a></li>
+            <li class="page-item"><a class="page-link" asp-controller="Admin" asp-action="Orders" asp-route-pageNum="@(currentPage - 1)">Previous</a></li>
+        }
 
-    // Show pages around the current page
-    for (int i = Math.Max(1, currentPage - windowSize); i <= Math.Min(totalPages, currentPage + windowSize); i++)
-    {
-        <a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="@i" class="@(i == currentPage ? "active" : "")">@i</a>
-    }
+        // Show pages around the current page
+        for (int i = Math.Max(1, currentPage - windowSize); i <= Math.Min(totalPages, currentPage + windowSize); i++)
+        {
+            <li class="page-item"><a class="page-link" asp-controller="Admin" asp-action="Orders" asp-route-pageNum="@i" class="@(i == currentPage ? "active" : "")">@i</a></li>
+        }
 
-    // Show ellipsis if there are pages not being shown
-    if (currentPage - windowSize > 1)
-    {
-        <span>...</span>
-    }
-    if (currentPage + windowSize < totalPages)
-    {
-        <span>...</span>
-    }
+        // Show ellipsis if there are pages not being shown
+        if (currentPage - windowSize > 1)
+        {
+            <li class="page-item"><span class="page-link">...</span></li>
+        }
+        if (currentPage + windowSize < totalPages)
+        {
+            <li class="page-item"><span class="page-link">...</span></li>
+        }
 
-    // Next and Last buttons
-    if (currentPage < totalPages)
-    {
-        <a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="@(currentPage + 1)">Next</a>
-        <a asp-controller="Admin" asp-action="Orders" asp-route-pageNum="@totalPages">Last</a>
+        // Next and Last buttons
+        if (currentPage < totalPages)
+        {
+            <li class="page-item"><a class="page-link" asp-controller="Admin" asp-action="Orders" asp-route-pageNum="@(currentPage + 1)">Next</a></li>
+            <li class="page-item"><a class="page-link" asp-controller="Admin" asp-action="Orders" asp-route-pageNum="@totalPages">Last</a></li>
+        }
     }
-}
-else
-{
-    <p>No pagination information available.</p>
-}
+    else
+    {
+        <p>No pagination information available.</p>
+    }
+</ul>
