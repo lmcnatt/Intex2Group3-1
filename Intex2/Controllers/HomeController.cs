@@ -11,16 +11,19 @@ using Microsoft.CodeAnalysis;
 using Microsoft.ML;
 using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
- 
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 namespace Intex2.Controllers
 {
     public class HomeController : Controller
     {
         private IIntex2Repository _repo;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public HomeController(IIntex2Repository repo)
+        public HomeController(IIntex2Repository repo, UserManager<IdentityUser> userManager)
         {
             _repo = repo;
+            _userManager = userManager;
             //var modelPath = "Intex2\fraud_onnx_model.onnx"; 
             //var model_session = new InferenceSession(modelPath);
             
@@ -31,11 +34,13 @@ namespace Intex2.Controllers
         {
             // if static (id = 0) then populate top 10
             // else (id = form input)
-            var id = 0;
+            int id = 0;
 
-            if (User.Identity.IsAuthenticated != null)
+            if (User.Identity.IsAuthenticated)
             {
-                // id = User.Identity.GetUserId(); // we need to write this method
+                var userId = _userManager.GetUserId(User);
+                id = _repo.GetHighestRating(userId);
+                
             }
             if (id != 0)
             {
