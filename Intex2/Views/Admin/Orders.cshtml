@@ -1,13 +1,24 @@
 @{
     ViewData["Title"] = "Orders";
- 
 }
 
 @model OrdersListViewModel
 
 <h1>@ViewData["Title"]</h1>
-
-<table class="table table-bordered table-striped">
+<br />
+<form asp-action="Orders" method="get">
+    <div class="filter-container">
+        <label for="filter">Filter by Fraud Status:</label>
+        <select id="filter" name="filter">
+            <option value="">All Orders</option>
+            <option value="true">Fraudulent Orders</option>
+            <option value="false">Non-Fraudulent Orders</option>
+        </select>
+        <button type="submit" id="applyFilter">Apply Filter</button>
+    </div>
+</form>
+<br />
+<table class="table table-borderless table-hover">
     <thead>
         <tr>
             <th>Order ID</th>
@@ -26,31 +37,31 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Order order in Model.Orders)
-        {
-            <tr>
-                <td class="text-left">@order.OrderID</td>
-                <td class="text-left">@order.CustomerId</td>
-                <td class="text-left">@order.CountryOfTransaction</td>
-                <td class="text-left">@order.Date</td>
-                <td class="text-left">@order.DayOfWeek</td>
-                <td class="text-left">@order.Time</td>
-                <td class="text-left">@order.EntryMode</td>
-                <td class="text-left">@order.Amount</td>
-                <td class="text-left">@order.TypeOfTransaction</td>
-                @if (@order.ShippingAddress == "")
-                {
-                <td class="text-left">@order.ShippingCountry</td>
-                }
-                else
-                {
-                <td class="text-left">@order.ShippingAddress<br /> @order.City, @order.State @order.Zip<br />@order.ShippingCountry</td>
-                }
-                <td class="text-left">@order.Bank</td>
-                <td class="text-left">@order.TypeOfCard</td>
-                <td class="text-left">@order.Fraud</td>
-            </tr>
-        }
+            @foreach (Order order in Model.Orders)
+            {
+                <tr class="@(order.Fraud ? "highlight-fraud" : "")">
+                    <td class="text-left">@order.OrderID</td>
+                    <td class="text-left">@order.CustomerId</td>
+                    <td class="text-left">@order.CountryOfTransaction</td>
+                    <td class="text-left">@order.Date</td>
+                    <td class="text-left">@order.DayOfWeek</td>
+                    <td class="text-left">@order.Time</td>
+                    <td class="text-left">@order.EntryMode</td>
+                    <td class="text-left">@order.Amount</td>
+                    <td class="text-left">@order.TypeOfTransaction</td>
+                    @if (@order.ShippingAddress == "")
+                    {
+                        <td class="text-left">@order.ShippingCountry</td>
+                    }
+                    else
+                    {
+                        <td class="text-left">@order.ShippingAddress<br /> @order.City, @order.State @order.Zip<br />@order.ShippingCountry</td>
+                    }
+                    <td class="text-left">@order.Bank</td>
+                    <td class="text-left">@order.TypeOfCard</td>
+                    <td class="text-left">@order.Fraud</td>
+                </tr>
+            }
     </tbody>
 </table>
 

@@ -55,16 +55,24 @@ namespace Intex2.Controllers
             return View(eplvm);
         }
 
-        public IActionResult Orders(int pageNum = 1)
+        public IActionResult Orders(string filter, int pageNum = 1)
         {
             int pageSize = 200;
 
-            var totalItems = _repo.Orders.Count();
+            // Filter orders based on the selected filter value
+            var ordersQuery = _repo.Orders.AsQueryable();
+            if (!string.IsNullOrEmpty(filter))
+            {
+                bool isFraud = filter.ToLower() == "true";
+                ordersQuery = ordersQuery.Where(o => o.Fraud == isFraud);
+            }
+
+            var totalItems = ordersQuery.Count();
             int totalPages = (totalItems + pageSize - 1) / pageSize;
 
             var plvm = new OrdersListViewModel
             {
-                Orders = _repo.Orders
+                Orders = ordersQuery
                     .OrderBy(x => x.OrderID)
                     .Skip((pageNum - 1) * pageSize)
                     .Take(pageSize),
@@ -80,6 +88,7 @@ namespace Intex2.Controllers
 
             return View(plvm);
         }
+
 
     }
 }
