@@ -4,7 +4,23 @@
     ViewData["Title"] = @Model.Name;
 }
 
-<div class="card">
+<div>
+    <div class="row">
+        <div class="col-1">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Products">
+                <img src="~/img/backbutton2.png" class="img-fluid rounded-corners" style="height:30px">
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5">
+            <img src="@Model.ImgLink" class="img-fluid" />
+        </div>
+        <div class="col-7" style="display: flex; justify-content: center;">
+            <h1><b>@Model.Name</b></h1>
+        </div>
+    </div>
+  
     <h4>
         @Model.Name
     </h4>
