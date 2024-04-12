@@ -66,8 +66,8 @@ namespace Intex2.Controllers
             { 
                 NamedOnnxValue.CreateFromTensor("float_input", new DenseTensor<float>(data, dimensions)) 
             });
-            Tensor<float> score = result.First().AsTensor<float>();
-            var prediction = score.First();
+            Tensor<long> score = (Tensor<long>)result[0].Value;
+            int prediction = (int)score.First();
             result.Dispose();
             if (prediction == 1)
             {

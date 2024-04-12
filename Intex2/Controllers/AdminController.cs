@@ -16,15 +16,24 @@ namespace Intex2.Controllers
         {
             _repo = repoService;
         }
-        public IActionResult AdminProducts(string? category, int pageNum = 1)
+        public IActionResult AdminProducts(string? category, string? color, int pageNum = 1)
         {
             int pageSize = 5;
+            int totalItems = category == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category.CategoryName == category).Count();
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            if (pageNum < 1)
+            {
+                pageNum = 1;
+            }
 
             var plvm = new ProductsListViewModel
             {
                 Products = _repo.Products
-                    .Where(x => x.Category.CategoryName == category)
+                    .Where(x=> ( category == null || x.Category.CategoryName == category) && 
+                    (color == null || x.PrimaryColor == color))
                     .OrderBy(x => x.Name)
+                    .ThenBy(x => x.PrimaryColor)
                     .Skip((pageNum - 1) * pageSize)
                     .Take(pageSize),
 
@@ -32,14 +41,15 @@ namespace Intex2.Controllers
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = category == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category.CategoryName == category).Count()
+                    TotalItems = totalItems,
+                    TotalPages = totalPages
                 },
-                CurrentCategory = category
+                CurrentCategory = category,
+                CurrentColor = color,
             };
 
             return View(plvm);
         }
-
         [HttpGet]
         public IActionResult AddEditProduct(int productId)
         {
@@ -73,7 +83,7 @@ namespace Intex2.Controllers
             var plvm = new OrdersListViewModel
             {
                 Orders = ordersQuery
-                    .OrderBy(x => x.OrderID)
+                    .OrderBy(x => x.Date)
                     .Skip((pageNum - 1) * pageSize)
                     .Take(pageSize),
 

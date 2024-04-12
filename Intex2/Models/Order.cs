@@ -21,7 +21,7 @@ namespace Intex2.Models
         public string? DayOfWeek { get; set; }
         public string? Time { get; set; }
         public string EntryMode { get; set; } = "CVC";
-        public decimal Amount { get; set; }
+        public int Amount { get; set; }
         public string TypeOfTransaction { get; set; } = "Online";
 
         [Required(ErrorMessage = "Please enter the first address line")]
