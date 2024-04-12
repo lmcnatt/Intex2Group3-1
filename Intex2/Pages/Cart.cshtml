@@ -4,9 +4,9 @@
 }
 @model Intex2.Pages.CartModel
 
-<h2>Your cart</h2>
+<h2>My cart</h2>
 
-<table class="table table-bordered table-striped">
+<table class="table table-borderless table-hover highlighted-rows" style="border-collapse: separate; border-spacing: 0 10px;">
     <thead>
         <tr>
             <th>Product Name</th>
@@ -21,14 +21,14 @@
         {
             <tr>
                 <td class="text-left">@l.Product.Name</td>
-                <td class="text-center">@l.Quantity</td>
+                <td class="text-right">@l.Quantity</td>
                 <td class="text-right">@l.Product.Price</td>
                 <td class="text-right">@((l.Quantity * l.Product.Price).ToString("c"))</td>
                 <td class="text-center">
                     <form asp-page-handler="Remove" method="post">
                         <input type="hidden" name="ProductId" value="@l.Product.ProductId" />
                         <input type="hidden" name="returnUrl" value="@Model?.ReturnUrl" />
-                        <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                        <button type="submit" class="red-pill-button">Remove</button>
                     </form>
                 </td>
             </tr>
@@ -44,6 +44,9 @@
 </table>
 
 <div class="text-center">
-    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a>
-    <a class="btn btn-primary" asp-action="Checkout" asp-controller="Order">Checkout</a>
+    <a class="pill-button" asp-action="Checkout" asp-controller="Order">Checkout</a>
+</div>
+<br />
+<div class="text-center">
+    <a class="mt-auto text-dark" style="font-size: 1.rem;" href="@Model.ReturnUrl">Continue Shopping</a>
 </div>

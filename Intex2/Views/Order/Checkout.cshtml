@@ -1,12 +1,10 @@
 ﻿@model Order
 
 <h2>Check out now</h2>
-<p>Please enter your details, and we'll ship your goods right away!</p>
-
+<br />
 <div asp-validation-summary="All" class="text-danger"></div>
 
 <form asp-action="Checkout" method="post">
-    <h3>Address</h3>
     <div class="form-group">
         <label>Address:</label>
         <input asp-for="ShippingAddress" class="form-control" />
@@ -27,25 +25,25 @@
         <label>Country:</label>
         <input asp-for="ShippingCountry" class="form-control" />
     </div>
-    <h3>Bank</h3>
     <div class="form-group">
-        <label>Bank</label>
+        <label>Bank:</label>
         <input asp-for="Bank" class="form-control" />
     </div>
-    <h3>Type of Card</h3>
     <div class="form-group">
-        <label>Type of Card</label>
+        <label>Type of Card:</label>
         <select asp-for="TypeOfCard" class="form-control" >
             <option value="Visa">Visa</option>
             <option value="MasterCard">MasterCard</option>
         </select>
     </div>
+    <br />
     <div class="text-center">
-        <input class="btn btn-primary" type="submit"
-               value="Complete Order" />
+        <input class="pill-button" type="submit" value="Place Order" />
     </div>
+    <br />
     <div class="text-center">
-        <a href="/Cart" class="btn btn-primary">Cancel Transaction</a>
+        <a href="/Cart" class="red-pill-button">Cancel Transaction</a>
     </div>
+    <br>
 
 </form>
