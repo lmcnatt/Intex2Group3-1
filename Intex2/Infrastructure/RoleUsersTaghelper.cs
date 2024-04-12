@@ -1,6 +1,7 @@
 using Intex2.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Identity.CustomTagHelpers
 {
@@ -18,14 +19,15 @@ namespace Identity.CustomTagHelpers
 
         [HtmlAttributeName("i-role")]
         public string Role { get; set; }
-
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             List<string> names = new List<string>();
             IdentityRole role = await roleManager.FindByIdAsync(Role);
             if (role != null)
             {
-                foreach (var user in userManager.Users)
+                // Materialize the IQueryable<IdentityUser> into a list
+                var users = userManager.Users.ToList();
+                foreach (var user in users)
                 {
                     if (user != null && await userManager.IsInRoleAsync(user, role.Name))
                         names.Add(user.UserName);
@@ -33,5 +35,21 @@ namespace Identity.CustomTagHelpers
             }
             output.Content.SetContent(names.Count == 0 ? "No Users" : string.Join(", ", names));
         }
+
+
+        // public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+        // {
+        //     List<string> names = new List<string>();
+        //     IdentityRole role = await roleManager.FindByIdAsync(Role);
+        //     if (role != null)
+        //     {
+        //         foreach (var user in userManager.Users)
+        //         {
+        //             if (user != null && await userManager.IsInRoleAsync(user, role.Name))
+        //                 names.Add(user.UserName);
+        //         }
+        //     }
+        //     output.Content.SetContent(names.Count == 0 ? "No Users" : string.Join(", ", names));
+        // }
     }
 }  

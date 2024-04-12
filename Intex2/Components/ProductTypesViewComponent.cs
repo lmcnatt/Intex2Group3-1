@@ -14,13 +14,14 @@ namespace Intex2.Components
 
         public IViewComponentResult Invoke()
         {
-            ViewBag.SelectedCategory = RouteData?.Values["CategoryName"];
+            ViewBag.SelectedCategory = RouteData?.Values["Category"];
 
-            var categories = _repo.Categories
-                .Select(x => x.CategoryName)
-                .Distinct()
-                .OrderBy(x => x);
+            // Assuming _repo.Categories is of type DbSet<Category>
+            var categories = _repo.Categories.
+            Select(c => c.CategoryName)
+            .AsEnumerable(); // Adjust this line based on your Category model
 
+            
             return View(categories);
         }
 
