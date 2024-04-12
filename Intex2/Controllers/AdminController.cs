@@ -73,7 +73,7 @@ namespace Intex2.Controllers
             var plvm = new OrdersListViewModel
             {
                 Orders = ordersQuery
-                    .OrderBy(x => x.OrderID)
+                    .OrderBy(x => x.Date)
                     .Skip((pageNum - 1) * pageSize)
                     .Take(pageSize),
 
