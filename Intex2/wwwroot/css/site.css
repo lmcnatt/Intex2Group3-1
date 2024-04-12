@@ -76,6 +76,7 @@ footer{
     padding: 10px 80px; /* Adjust padding as needed */
     cursor: pointer; /* Add pointer cursor for better UX */
     transition: background-color 0.3s, color 0.3s; /* Add smooth transition effect */
+    text-decoration: none;
 }
 
     .pill-button:hover {

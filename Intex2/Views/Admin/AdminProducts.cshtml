@@ -5,9 +5,12 @@
 @model ProductsListViewModel
 
 <div class="row m-1 p-1">
+    <div class="row m-1 p-1">
     <div class="col-3 ">
         <h1 class="text-center">Products</h1>
         <vc:product-types />
+        <hr>
+        <vc:product-color />
     </div>
     <div class="container col-9">
 
@@ -34,8 +37,8 @@
             </div>
         }
 
-        <div page-model="@Model.PaginationInfo" page-action="AdminProducts" page-classes-enabled="true" page-class="btn"
-            page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
+        <div page-model="@Model.PaginationInfo" page-action="Products" page-classes-enabled="true" page-class="btn"
+            page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory" page-url-color="@Model.CurrentColor"
             class="btn-group pull-right m-1 custom-card">
         </div>
     </div>

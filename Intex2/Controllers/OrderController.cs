@@ -20,7 +20,7 @@ namespace Intex2.Controllers
         {
             _repo = repoService;
             cart = cartService;
-            string modelPath = "fraud_onnx_model.onnx";
+            string modelPath = "wwwroot/fraud_onnx_model.onnx";
             _session = new InferenceSession(modelPath);
         }
 

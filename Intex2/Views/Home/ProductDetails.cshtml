@@ -1,7 +1,7 @@
-@model Product
+@model List<Product>
 
 @{
-    ViewData["Title"] = @Model.Name;
+    ViewData["Title"] = @Model[0].Name;
 }
 
 <div>
@@ -12,34 +12,81 @@
             </a>
         </div>
     </div>
-    <div class="row">
-        <div class="col-5">
-            <img src="@Model.ImgLink" class="img-fluid" />
+    <div class="row justify-content-center">
+        <div class="col-5 d-flex justify-content-center">
+            <img src="@Model[0].ImgLink" class="img-fluid" />
         </div>
-        <div class="col-7" style="display: flex; justify-content: center;">
-            <h1><b>@Model.Name</b></h1>
+        <div class="col-7 d-flex flex-column justify-content-center text-center">
+            <div>
+                <h1><b>@Model[0].Name</b></h1>
+                <p class="lead"><b>@Model[0].Category | Created in @Model[0].Year | @Model[0].NumParts Pieces</b></p>
+                <p class="lead"><b>Colors: @Model[0].PrimaryColor & @Model[0].SecondaryColor</b></p>
+                <br /><br />
+            </div>
+            <form asp-page="/Cart" id="@Model[0].ProductId" method="post" class="mb-auto d-flex flex-column">
+                <div>
+                    <input type="hidden" asp-for="@Model[0].ProductId">
+                    <input type="hidden" name="category" value="@ViewContext.HttpContext.Request.Query["category"]" />
+                    <input type="hidden" name="pageNum" value="@ViewContext.HttpContext.Request.Query["pageNum"]" />
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="short-pill-button w-100 mt-auto">Add to Cart</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-  
-    <h4>
-        @Model.Name
-    </h4>
-    <ul>
-        <li>Product Name: @Model.Name</li>
-        <li>
-            Categories:
-            | Created in: @Model.Year | @Model.NumParts Pieces
-        </li>
-        <li>Colors: @Model.PrimaryColor and @Model.SecondaryColor</li>
-        <li>@Model.Description</li>
-        <li class="text-end">Our Price: @Model.Price</li>
-        <li><img src="@Model.ImgLink" /></li>
-    </ul>
 
-    <form asp-page="/Cart" id="@Model.ProductId" method="post" class="position-absolute bottom-0 end-0">
+
+    <br /><br />
+    <div class="custom-card" style="border-radius: 10px;">
+        <div class="card-body">
+            <h4>Product Description</h4>
+            <p class="lead">@Model[0].Description</p>
+        </div>
+    </div>
+
+    <<div class="row">
+        <div class="col-10">
+            <h2><b>Popular Picks</b></h2>
+            <p class="subtext">From fan favorites to new releases, explore our curated selection of the most sought-after LEGO sets, handpicked based on popularity and purchases.</p>
+        </div>
+        <div class="col-2">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Products">
+                <span>
+                    <h4 style="display: inline-block; margin-right: 5px;"><b>Shop More</b></h4>
+                    <i class="fas fa-arrow-right"></i>
+                </span>
+            </a>
+        </div>
+        <div class="scroll-container">
+            @foreach (var product in Model.Skip(1))
+            {
+                <div class="product-card product-card-custom-height" style="background-color:white">
+                    <a asp-controller="Home" asp-action="ProductDetails" asp-route-productId="@product.ProductId" class="mt-auto text-dark" style="align-items:center">
+                        <img src="@product.ImgLink" class="img-thumbnail rounded float-left mx-auto my-auto d-block" style="height:180px" />
+                    </a>
+                </div>
+            }
+
+            <div class="product-card product-card-custom-height" style="background-color:white; display: flex; align-items: center; justify-content: center; height: 80%;">
+                <a asp-controller="Home" asp-action="Products" class="short-pill-button wide-button">See More</a>
+            </div>
+        </div>
+    </div>
+
+    <br /><br />
+
+    
+  
+
+   @*  <form asp-page="/Cart" id="@Model.ProductId" method="post" class="position-absolute bottom-0 end-0">
         <input type="hidden" asp-for="@Model.ProductId">
         <input type="hidden" name="category" value="@ViewContext.HttpContext.Request.Query["category"]" />
         <input type="hidden" name="pageNum" value="@ViewContext.HttpContext.Request.Query["pageNum"]" />
         <button type="submit" class="btn btn-success btn-sm">Add to Cart</button>
-    </form>
+    </form> *@
+
+
+
+    
 </div>

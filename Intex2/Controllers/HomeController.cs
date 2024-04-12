@@ -132,8 +132,29 @@ namespace Intex2.Controllers
         [Route("ProductDetails/{productId:int}")]
         public IActionResult ProductDetails(int productId)
         {
-            var product = _repo.Products.Where(p =>  p.ProductId == productId).FirstOrDefault();
-            return View(product);
+            var recommendation = _repo.Products.Where(p =>  p.ProductId == productId).FirstOrDefault();
+            var recommendedProducts = new List<Product>();
+            var prodId = (int)typeof(Recommendation).GetProperty($"RecId").GetValue(recommendation);
+            var prod1 = _repo.Products.FirstOrDefault(p => p.ProductId == prodId);
+            recommendedProducts.Add(prod1);
+
+                // Loop through each recommendation column (rec1 to rec10)
+                for (int i = 1; i <= 10; i++)
+                {
+                    // Retrieve the product ID for the current recommendation column
+                    var recId = (int)typeof(Recommendation).GetProperty($"Rec{i}").GetValue(recommendation);
+
+                    // Retrieve the product details for the current recommendation ID
+                    var product = _repo.Products.FirstOrDefault(p => p.ProductId == recId);
+
+                    // Add the product to the list if it exists
+                    if (product != null)
+                    {
+                        recommendedProducts.Add(product);
+                    }
+                }
+
+                return View(recommendedProducts); 
         }
 
         public IActionResult About()
