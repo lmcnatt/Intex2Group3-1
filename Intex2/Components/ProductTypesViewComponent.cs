@@ -14,11 +14,15 @@ namespace Intex2.Components
 
         public IViewComponentResult Invoke()
         {
-            ViewBag.SelectedCategory = RouteData?.Values["Category"];
+            ViewBag.SelectedCategory = RouteData?.Values["CategoryName"];
 
-            var categories = _repo.Categories;
+            var categories = _repo.Categories
+                .Select(x => x.CategoryName)
+                .Distinct()
+                .OrderBy(x => x);
 
             return View(categories);
         }
+
     }
 }

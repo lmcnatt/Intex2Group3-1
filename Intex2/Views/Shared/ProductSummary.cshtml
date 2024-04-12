@@ -7,8 +7,7 @@
         </div>
         <div class="col-5 d-flex flex-column">
             <h4><b>@Model.Name</b></h4>
-            <h6>
-            </h6>
+            <h6>@Model.Category.CategoryName</h6>
             <a asp-controller="Home" asp-action="ProductDetails" asp-route-productId="@Model.ProductId" class="mt-auto text-dark" style="font-size: 1.rem;"><u>Product Details</u></a>
         </div>
         <div class="col-3 d-flex flex-column justify-content-between">
