@@ -134,6 +134,9 @@ namespace Intex2.Controllers
         {
             var recommendation = _repo.Products.Where(p =>  p.ProductId == productId).FirstOrDefault();
             var recommendedProducts = new List<Product>();
+            var prodId = (int)typeof(Recommendation).GetProperty($"RedId").GetValue(recommendation);
+            var prod1 = _repo.Products.FirstOrDefault(p => p.ProductId == prodId);
+            recommendedProducts.Add(prod1);
 
                 // Loop through each recommendation column (rec1 to rec10)
                 for (int i = 1; i <= 10; i++)
