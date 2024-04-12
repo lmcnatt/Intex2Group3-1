@@ -4,44 +4,91 @@
 
 @model ProductsListViewModel
 
-<div class="row m-1 p-1">
-    <div class="row m-1 p-1">
-    <div class="col-3 ">
-        <h1 class="text-center">Products</h1>
-        <vc:admin-product-types />
-        <hr>
-        <vc:admin-product-color />
-    </div>
-    <div class="container col-9">
-        <a class="short-pill-button" asp-controller="Admin" asp-action="AddProduct" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">Add New Product</a>
-        <hr>
-        @foreach (Product p in Model.Products)
-        {
-            <div class="card m-1 p-1 custom-card">
-                <div class="row">
-                    <div class="col-4">
-                        <img src="@p.ImgLink" class="img-thumbnail rounded float-left mx-auto my-auto d-block " />
-                    </div>
-                    <div class="col-5">
-                        <h5>@p.Name</h5>
-                        <h6>
-                            @p.Category.CategoryName
-                        </h6>
-                    </div>
-                    <div class="col-2 d-flex flex-column h-100 justify-content-end">
-                        <h4>
-                            <span class="text-black"><small>@p.Price.ToString("c")</small></span>
-                        </h4>
-                        <a class="short-pill-button" asp-controller="Admin" asp-action="EditProduct" asp-route-productId="@p.ProductId" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">
-                            Edit Product
-                        </a>
-                        <form id="deleteProduct_@p.ProductId" action="@Url.Action("DeleteProduct", "Admin", new { productId = p.ProductId })" method="post">
-                            <button class="btn btn-danger" type="button" onclick="confirmDelete(@p.ProductId)">Delete</button>
-                        </form>
+<div class="container">
+    <!-- Start of the container -->
+    <div class="row">
+        <!-- Start of the row -->
+        <!-- Filter Section -->
+        <div class="col-3">
+            <h1 class="text-center">Products</h1>
+
+            <!-- Items Per Page Form -->
+            @* <div>
+            <h5>Items Per Page</h5>
+            <form asp-action="Products" method="get" class="d-flex align-items-center">
+            <input type="hidden" name="pageNum" value="@Model.PaginationInfo.CurrentPage" />
+            <input type="hidden" name="category" value="@Model.CurrentCategory" />
+            <input type="hidden" name="color" value="@Model.CurrentColor" />
+            <select name="pageSize" class="form-select me-2">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            </select>
+            <button type="submit" class="btn btn-outline-secondary text-center">Apply</button>
+            </form>
+            </div>
+            *@
+            <hr />
+            <!-- View All Button -->
+            <div class="d-grid gap-2">
+                <a class="btn btn-outline-secondary text-center" asp-controller="Home" asp-action="Products" asp-route-category="">View All</a>
+            </div>
+            <hr />
+            <!-- Categories and Colors -->
+            <div class="row">
+                <div class="col-6">
+                    <h4 class="text-center">Categories</h4>
+                    <vc:product-types />
+                </div>
+                <div class="col-6">
+                    <h4 class="text-center">Colors</h4>
+                    <vc:product-color />
+                </div>
+            </div>
+            <hr />
+            <!-- Clear Filters Button -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-grid gap-2">
+                        <a class="btn btn-outline-secondary text-center" asp-controller="Home" asp-action="Products" asp-route-category="">Clear Filters</a>
                     </div>
                 </div>
             </div>
-        }
+        </div>
+
+        <!-- Cards Section -->
+        <div class="col-9">
+            <a class="btn btn-primary blue-pill-button w-100" asp-controller="Admin" asp-action="AddProduct" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()" style="padding-top:10px; padding-bottom:10px">Add New Product</a>
+            <br /><br />
+            @foreach (Product p in Model.Products)
+            {
+                <div class="card m-1 p-1" style="margin-bottom:20px">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="@p.ImgLink" class="img-thumbnail rounded float-left mx-auto my-auto d-block" />
+                            </div>
+                            <div class="col-8">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <h3><b>@p.Name</b> | @p.Category.CategoryName</h3>
+                                    </div>
+                                    <div class="col-md-3 float-end">
+                                        <h3>@p.Price.ToString("c")</h3>
+                                    </div>
+                                </div>
+                                <p class="lead">@p.NumParts Pieces</p>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <a asp-controller="Admin" asp-action="EditProduct" asp-route-productId="@p.ProductId" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()" class="btn btn-primary blue-pill-button w-100">Edit Product</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
 
         <div class="pagination-container">
             <div page-model="@Model.PaginationInfo" page-action="AdminProducts" page-classes-enabled="true" page-class="btn"
@@ -54,7 +101,7 @@
             page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory" page-url-color="@Model.CurrentColor"
             class="btn-group pull-right m-1 custom-card">
         </div> *@
-    </div>
+    </div>x
 </div>
 
 <script>
