@@ -107,10 +107,8 @@ namespace Intex2.Controllers
             var plvm = new ProductsListViewModel
             {
                 Products = _repo.Products
-                    .Where(x=> ( category == null || x.Category.CategoryName == category) && 
-                    (color == null || x.PrimaryColor == color || x.SecondaryColor == color))
+                    .Where(x=> ( category == null || x.Category.CategoryName == category))
                     .OrderBy(x => x.Name)
-                    .ThenBy(x => x.PrimaryColor)
                     .Skip((pageNum - 1) * pageSize)
                     .Take(pageSize),
 
