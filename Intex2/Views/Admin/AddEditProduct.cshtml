@@ -2,16 +2,72 @@
     ViewData["Title"] = "Add/Edit Product";
 }
 
-@model EditProductsViewModel
-@Html.CheckBox("isActive", true)
+@model Product
 
 <div class="card">
     <form method="post">
-        <input type="hidden" asp-for="@Model.Product.ProductId">
+        <input type="hidden" asp-for="ProductId">
 
         <div class="input-group">
-            <div class="form-check">
-            </div>
+            <label asp-for="ProductId" class="input-group-text">Category</label>
+            <select asp-for="ProductId">
+                @foreach (Category c in ViewBag.Categories)
+                {
+                    <option value="@c.CategoryId">@c.CategoryName</option>
+                }
+            </select>
         </div>
+
+        <div class="input-group">
+            <label asp-for="Name" class="input-group-text">Name</label>
+            <input asp-for="Name" type="text" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="input-group">
+            <label asp-for="Year" class="input-group-text">Year</label>
+            <input asp-for="Year" type="number" class="form-control">
+            <span asp-validation-for="Year" class="text-danger"></span>
+        </div>
+
+        <div class="input-group">
+            <label asp-for="NumParts" class="input-group-text">Number of Parts</label>
+            <input asp-for="NumParts" type="number" class="form-control">
+            <span asp-validation-for="NumParts" class="text-danger"></span>
+        </div>
+
+        <div class="input-group">
+            <label asp-for="Price" class="input-group-text">Price</label>
+            <input asp-for="Price" type="number" class="form-control">
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="input-group">
+            <label asp-for="ImgLink" class="input-group-text">Image Link</label>
+            <input asp-for="ImgLink" type="text" class="form-control">
+            <span asp-validation-for="ImgLink" class="text-danger"></span>
+        </div>
+
+        <div class="input-group">
+            <label asp-for="PrimaryColor" class="input-group-text">Primary Color</label>
+            <input asp-for="PrimaryColor" type="text" class="form-control">
+            <span asp-validation-for="PrimaryColor" class="text-danger"></span>
+        </div>
+
+        <div class="input-group">
+            <label asp-for="SecondaryColor" class="input-group-text">Secondary Color</label>
+            <input asp-for="SecondaryColor" type="text" class="form-control">
+        </div>
+
+        <div class="input-group">
+            <label asp-for="Description" class="input-group-text">Description</label>
+            <textarea asp-for="Description" class="form-control">@Model.Description</textarea>
+        </div>
+
+        <br>
+
+        <button type="submit" class="btn btn-outline-success">Submit</button>
     </form>
+
+    <a class="btn btn-outline-danger" asp-controller="Admin" asp-action="AdminProducts">Cancel</a>
 </div>

@@ -13,7 +13,8 @@
         <vc:admin-product-color />
     </div>
     <div class="container col-9">
-
+        <a class="short-pill-button" asp-controller="Admin" asp-action="AddProduct" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">Add New Product</a>
+        <hr>
         @foreach (Product p in Model.Products)
         {
             <div class="card m-1 p-1 custom-card">
@@ -31,7 +32,9 @@
                         <h4>
                             <span class="text-black"><small>@p.Price.ToString("c")</small></span>
                         </h4>
-                        <a class="short-pill-button" asp-controller="Admin" asp-action="AddEditProduct" asp-route-productId="@p.ProductId"><u>Edit Product</u></a>
+                        <a class="short-pill-button" asp-controller="Admin" asp-action="EditProduct" asp-route-productId="@p.ProductId" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">
+                            Edit Product
+                        </a>
                     </div>
                 </div>
             </div>
