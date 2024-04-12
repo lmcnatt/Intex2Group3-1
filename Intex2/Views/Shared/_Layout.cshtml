@@ -11,6 +11,7 @@
 </head>
 <body>
     <header>
+        @* Navigation Bar *@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -66,7 +67,29 @@
             @RenderBody()
         </main>
     </div>
+    @* Footer *@
     <footer class="footer">
+        <div class="container" style="display: grid; place-items: center;">
+            <div class="row" style="justify-content:center">
+                <div>
+                    <a href="https://www.tiktok.com" style="text-decoration:none>
+                        <img src="~/img/tiktok_logo.png" class="social-icon" alt="TikTok Logo" />
+                    </a>
+                    <a href="https://www.instagram.com" style="text-decoration:none">
+                        <img src="~/img/instagram-white-icon.png" class="social-icon" />
+                    </a>
+                    <a href="https://www.facebook.com" style="text-decoration:none>
+                        <img src="~/img/facebooklogo.png" class="social-icon" />
+                    </a>
+                </div>
+            </div>
+            <p class="text-muted">
+                2024 &copy; Brickwell Creations -
+                <a asp-area="" asp-controller="Home" asp-action="Privacy" style="color: #A9a9a9">Privacy Policy</a>
+            </p>
+        </div>
+    </footer>
+   @*  <footer class="footer">
         <div class="container icon-container">
             <img src="~/img/tiktok logo.png" class=social-icon />
             <img src="~/img/instagram-white-icon.png" class=social-icon/>
@@ -74,11 +97,12 @@
             <br />
             2024 &copy; Brickwell Creations -<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy Policy</a>
         </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     @await RenderSectionAsync("Scripts", required: false)
+    *@
 </body>
 </html>
+
