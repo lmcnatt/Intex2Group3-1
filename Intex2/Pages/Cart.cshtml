@@ -34,19 +34,29 @@
             </tr>
         }
     </tbody>
-
-    <tfoot>
-        <tr>
-            <td colspan="3" class="text-right">Total:</td>
-            <td class="text-right">@Model.Cart?.CalculateTotal().ToString("c")</td>
-        </tr>
-    </tfoot>
 </table>
 
-<div class="text-center">
-    <a class="pill-button" asp-action="Checkout" asp-controller="Order">Checkout</a>
+<div class="d-flex justify-content-end">
+    <div class="card custom-card">
+        <div class="card-body">
+            <div class="row">
+                <div class="text-center">
+                    <h4><b>Total: </b>@Model.Cart?.CalculateTotal().ToString("c")</h4>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col text-center">
+                    <a class="pill-button" asp-action="Checkout" asp-controller="Order">Checkout</a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col text-center">
+                    <a class="mt-auto text-dark" style="font-size: 1.rem;" href="@Model.ReturnUrl">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<br />
-<div class="text-center">
-    <a class="mt-auto text-dark" style="font-size: 1.rem;" href="@Model.ReturnUrl">Continue Shopping</a>
-</div>
+

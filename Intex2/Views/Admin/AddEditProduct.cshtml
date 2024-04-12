@@ -4,70 +4,89 @@
 
 @model Product
 
-<div class="card">
-    <form method="post">
-        <input type="hidden" asp-for="ProductId">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-9">
+            <div class="card custom-card rounded-lg" style="padding:10px 20px">
+                <div class="card-body">
+                    <h2 class="text-center">@ViewData["Title"]</h2>
+                    <form method="post">
+                        <input type="hidden" asp-for="ProductId">
 
-        <div class="input-group">
-            <label asp-for="ProductId" class="input-group-text">Category</label>
-            <select asp-for="ProductId">
-                @foreach (Category c in ViewBag.Categories)
-                {
-                    <option value="@c.CategoryId">@c.CategoryName</option>
-                }
-            </select>
+                        <div class="form-floating mb-3">
+                            <select asp-for="ProductId" class="form-control">
+                                @foreach (Category c in ViewBag.Categories)
+                                {
+                                    <option value="@c.CategoryId">@c.CategoryName</option>
+                                }
+                            </select>
+                            <label asp-for="ProductId">Category</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Name" type="text" class="form-control" placeholder="Name">
+                            <label asp-for="Name">Name</label>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Year" type="number" class="form-control" placeholder="Year">
+                            <label asp-for="Year">Year</label>
+                            <span asp-validation-for="Year" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="NumParts" type="number" class="form-control" placeholder="Number of Parts">
+                            <label asp-for="NumParts">Number of Parts</label>
+                            <span asp-validation-for="NumParts" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Price" type="number" class="form-control" placeholder="Price">
+                            <label asp-for="Price">Price</label>
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="ImgLink" type="text" class="form-control" placeholder="Image Link">
+                            <label asp-for="ImgLink">Image Link</label>
+                            <span asp-validation-for="ImgLink" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="PrimaryColor" type="text" class="form-control" placeholder="Primary Color">
+                            <label asp-for="PrimaryColor">Primary Color</label>
+                            <span asp-validation-for="PrimaryColor" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="SecondaryColor" type="text" class="form-control" placeholder="Secondary Color">
+                            <label asp-for="SecondaryColor">Secondary Color</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <textarea asp-for="Description" class="form-control" placeholder="Description">@Model.Description</textarea>
+                            <label asp-for="Description">Description</label>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="blue-pill-button">Submit</button>
+                        </div>
+                    </form>
+                    <br />
+                    <div class="text-center">
+                        <a class="red-pill-button" asp-controller="Admin" asp-action="AdminProducts">Cancel</a>
+                    </div>
+                   
+                </div>
+            </div>
         </div>
-
-        <div class="input-group">
-            <label asp-for="Name" class="input-group-text">Name</label>
-            <input asp-for="Name" type="text" class="form-control">
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-
-        <div class="input-group">
-            <label asp-for="Year" class="input-group-text">Year</label>
-            <input asp-for="Year" type="number" class="form-control">
-            <span asp-validation-for="Year" class="text-danger"></span>
-        </div>
-
-        <div class="input-group">
-            <label asp-for="NumParts" class="input-group-text">Number of Parts</label>
-            <input asp-for="NumParts" type="number" class="form-control">
-            <span asp-validation-for="NumParts" class="text-danger"></span>
-        </div>
-
-        <div class="input-group">
-            <label asp-for="Price" class="input-group-text">Price</label>
-            <input asp-for="Price" type="number" class="form-control">
-            <span asp-validation-for="Price" class="text-danger"></span>
-        </div>
-
-        <div class="input-group">
-            <label asp-for="ImgLink" class="input-group-text">Image Link</label>
-            <input asp-for="ImgLink" type="text" class="form-control">
-            <span asp-validation-for="ImgLink" class="text-danger"></span>
-        </div>
-
-        <div class="input-group">
-            <label asp-for="PrimaryColor" class="input-group-text">Primary Color</label>
-            <input asp-for="PrimaryColor" type="text" class="form-control">
-            <span asp-validation-for="PrimaryColor" class="text-danger"></span>
-        </div>
-
-        <div class="input-group">
-            <label asp-for="SecondaryColor" class="input-group-text">Secondary Color</label>
-            <input asp-for="SecondaryColor" type="text" class="form-control">
-        </div>
-
-        <div class="input-group">
-            <label asp-for="Description" class="input-group-text">Description</label>
-            <textarea asp-for="Description" class="form-control">@Model.Description</textarea>
-        </div>
-
-        <br>
-
-        <button type="submit" class="btn btn-outline-success">Submit</button>
-    </form>
-
-    <a class="btn btn-outline-danger" asp-controller="Admin" asp-action="AdminProducts">Cancel</a>
+    </div>
 </div>
+<br />
+<br />
+<br />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
