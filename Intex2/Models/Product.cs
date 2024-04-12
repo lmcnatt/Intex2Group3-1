@@ -7,8 +7,8 @@ namespace Intex2.Models
     public class Product
     {
         [Key][Required] public int ProductId { get; set; }
-        [ForeignKey("CategoryId")] public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        [ForeignKey("CategoryId")] public int? CategoryId { get; set; }
+        public Category? Category { get; set; }
         public string? Name { get; set; }
         public int Year { get; set; }
         public int NumParts { get; set; }

@@ -64,6 +64,14 @@ namespace Intex2.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
+            // Check ModelState errors
+            foreach (var state in ModelState.Values)
+            {
+                foreach (var error in state.Errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+            }
             if (ModelState.IsValid)
             {
                 _repo.AddProduct(product);
@@ -75,7 +83,9 @@ namespace Intex2.Controllers
                 ViewBag.categories = _repo.Categories
                     .OrderBy(x => x.CategoryName);
                 
-                return View(product);
+                Console.WriteLine("It didn't work");
+                
+                return View("AddEditProduct", product);
             }
         }
 

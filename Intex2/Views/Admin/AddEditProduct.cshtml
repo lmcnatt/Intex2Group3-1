@@ -9,8 +9,8 @@
         <input type="hidden" asp-for="ProductId">
 
         <div class="input-group">
-            <label asp-for="ProductId" class="input-group-text">Category</label>
-            <select asp-for="ProductId">
+            <label asp-for="CategoryId" class="input-group-text">Category</label>
+            <select asp-for="CategoryId">
                 @foreach (Category c in ViewBag.Categories)
                 {
                     <option value="@c.CategoryId">@c.CategoryName</option>
