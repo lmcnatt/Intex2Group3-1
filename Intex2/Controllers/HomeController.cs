@@ -97,12 +97,15 @@ namespace Intex2.Controllers
             }
         }
 
-        public IActionResult Products(string? category, string? color, int pageNum = 1)
+        public IActionResult Products(string? category, string? color, int pageNum = 1, int pageSize = 5)
         {
-            int pageSize = 5;
+            // Calculate total items based on category and color filters
             int totalItems = category == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category.CategoryName == category).Count();
+
+            // Calculate total pages based on the selected page size
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
+            // Ensure pageNum is within valid range
             if (pageNum < 1)
             {
                 pageNum = 1;
@@ -111,7 +114,7 @@ namespace Intex2.Controllers
             var plvm = new ProductsListViewModel
             {
                 Products = _repo.Products
-                    .Where(x=> ( category == null || x.Category.CategoryName == category) && 
+                    .Where(x => (category == null || x.Category.CategoryName == category) &&
                     (color == null || x.PrimaryColor == color))
                     .OrderBy(x => x.Name)
                     .ThenBy(x => x.PrimaryColor)
