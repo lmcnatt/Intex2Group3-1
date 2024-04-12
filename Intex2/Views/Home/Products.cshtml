@@ -59,10 +59,13 @@
             <partial name="ProductSummary" model="p" />
         }
 
-        <div page-model="@Model.PaginationInfo" page-action="Products" page-classes-enabled="true" page-class="btn"
-             page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory" page-url-color="@Model.CurrentColor"
-             class="btn-group pull-right m-1">
+        <div class="pagination-container">
+            <div page-model="@Model.PaginationInfo" page-action="Products" page-classes-enabled="true" page-class="btn"
+                 page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory" page-url-color="@Model.CurrentColor"
+                 class="btn-group pull-right m-1" style="color: #237841">
+            </div>
         </div>
     </div>
+
 </div>
 

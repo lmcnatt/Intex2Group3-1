@@ -27,7 +27,7 @@
             </div>
             <div class="col-6">
                 <form asp-page="/Cart" id="@Model.ProductId" method="post" class="mb-auto">
-                    <div>
+                    <div class="text-center">
                         <input type="hidden" asp-for="@Model.ProductId">
                         <input type="hidden" name="category" value="@ViewContext.HttpContext.Request.Query["category"]" />
                         <input type="hidden" name="pageNum" value="@ViewContext.HttpContext.Request.Query["pageNum"]" />
