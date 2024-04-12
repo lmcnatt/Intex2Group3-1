@@ -203,3 +203,53 @@ footer{
     background-color: #f8f9fa; /* Optional: Set a background color */
     padding: 20px; /* Optional: Add some padding inside the box */
 }
+
+.scroll-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.product-card {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ensure the container takes up the full height */
+}
+
+
+.product-card-custom-height {
+    height: 200px; /* Adjust this value as needed */
+    display: flex; /* Use flexbox to align content vertically */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: space-between; /* Distribute space between items */
+}
+
+.custom-height {
+    height: 100px; /* Adjust this value as needed */
+    object-fit: cover;
+    margin: 10px 20px;
+}
+
+
+.more-button {
+    border: 2px solid #237841; /* Change the color code to set the outline color */
+    border-radius: 50px; /* This creates the pill shape */
+    background-color: transparent; /* Makes the background transparent */
+    color: #237841; /* Change the color code to set the text color */
+    padding: 10px 80px; /* Adjust padding as needed */
+    cursor: pointer; /* Add pointer cursor for better UX */
+    transition: background-color 0.3s, color 0.3s; /* Add smooth transition effect */
+    width: 200px; /* Adjust the width as needed */
+    display: inline-block; /* Ensures the width is applied */
+}
+
+    .more-button:hover {
+        background-color: #237841; /* Change the color code to set the hover background color */
+        color: #fff; /* Change the color code to set the hover text color */
+    }
+.wide-button {
+
+}
