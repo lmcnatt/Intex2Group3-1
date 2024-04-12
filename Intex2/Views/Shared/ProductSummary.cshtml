@@ -1,21 +1,29 @@
 ﻿@model Product
 
 
-<div class="card">
+<div class="card" style="margin-bottom:20px">
     <div class="card-body">
         <div class="row">
             <div class="col-4">
                 <img src="@Model.ImgLink" class="img-thumbnail rounded float-left mx-auto my-auto d-block" />
             </div>
             <div class="col-8">
-                <h4><b>@Model.Name</b></h4>
-                <h6>@Model.Category.CategoryName</h6>
+                <div class="row">
+                    <div class="col-md-10">
+                        <h3><b>@Model.Name</b> | @Model.Category.CategoryName</h3> 
+                    </div>
+                    <div class="col-md-2 float-end">
+                        <h3>$@Model.Price</h3>
+                    </div>
+                    
+                </div>
+                <p class="lead">@Model.NumParts Pieces</p>
             </div>
         </div>
         <br />
         <div class="row">
             <div class="col-6" style="text-decoration:none;">
-                <a asp-controller="Home" asp-action="ProductDetails" asp-route-productId="@Model.ProductId" class="btn btn-primary pill-button w-100 no-underline" style="text-decoration:none"><u>Product Details</u></a>
+                <a asp-controller="Home" asp-action="ProductDetails" asp-route-productId="@Model.ProductId" class="btn pill-button w-100">Product Details</a>
             </div>
             <div class="col-6">
                 <form asp-page="/Cart" id="@Model.ProductId" method="post" class="mb-auto">

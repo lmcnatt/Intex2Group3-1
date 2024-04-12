@@ -1,13 +1,14 @@
 ﻿using Intex2.Components;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Intex2.Models
 {
     public class Product
     {
-        public int ProductId { get; set; }
+        [Key][Required] public int ProductId { get; set; }
+        [ForeignKey("CategoryId")] public int CategoryId { get; set; }
         public Category Category { get; set; }
-        public int CategoryId { get; set; }
         public string? Name { get; set; }
         public int Year { get; set; }
         public int NumParts { get; set; }
