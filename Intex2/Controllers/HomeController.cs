@@ -100,7 +100,7 @@ namespace Intex2.Controllers
             var plvm = new ProductsListViewModel
             {
                 Products = _repo.Products
-                    .Where(x => x.Category.CategoryName == category)
+                    .Where(x => x.Category.CategoryName == category || category == null)
                     .OrderBy(x => x.Name)
                     .Skip((pageNum - 1) * pageSize)
                     .Take(pageSize),
