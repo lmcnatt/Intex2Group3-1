@@ -32,26 +32,26 @@ namespace Intex2.Controllers
 
         public IActionResult Index()
         {
-            int id = 0;
+            int? id = 0;
 
-            // if (User.Identity.IsAuthenticated)
-            // {
-            //     var userId = _userManager.GetUserId(User);
-            //     // id = _repo.GetHighestRating(userId);
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = _userManager.GetUserId(User);
+                id = _repo.GetMostPurchased(userId);
                 
-            // }
+            }
             if (id != 0)
             {
                 // Assuming _repo.Recommendations is a DbSet or similar that allows querying
-                 var recommendation = _repo.Recommendations.Where(p =>  p.RecId == id).FirstOrDefault();
+                var recommendation = _repo.Recommendations.Where(p =>  p.RecId == id).FirstOrDefault();
                 var recommendedProducts = new List<Product>();
 
                 // Loop through each recommendation column (rec1 to rec10)
-                for (int i = 0; i <= 10; i++)
+                for (int i = 1; i <= 10; i++)
                 {
                     var recId = 0;
-                    if (i == 0){recId = recommendation.RecId;}
-                    else if (i == 1){recId = recommendation.Rec1;}
+                
+                    if (i == 1){recId = recommendation.Rec1;}
                     else if (i == 2){recId = recommendation.Rec2;}
                     else if (i == 3){recId = recommendation.Rec3;}
                     else if (i == 4){recId = recommendation.Rec4;}
@@ -95,11 +95,6 @@ namespace Intex2.Controllers
                 return View(recommendedProducts);
 
             }
-
-
-
-            // Pass the list of recommended products to the view
-            ;
         }
 
         public IActionResult Products(string? category, string? color, int pageNum = 1)

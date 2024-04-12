@@ -10,7 +10,8 @@
         public Customer GetCustomer(string id);
         public IQueryable<Recommendation> Recommendations { get; }
         public Recommendation GetRecommendationById(int id);
-        // public int GetMostPurchased (string userId);
+        
+        public int? GetMostPurchased (string userId);
 
     }
 }
