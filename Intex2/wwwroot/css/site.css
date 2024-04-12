@@ -171,6 +171,7 @@ footer{
 .highlighted-rows {
     width: 100%;
     border-collapse: collapse;
+    border-radius: 10px;
 }
 
     .highlighted-rows td,
@@ -179,12 +180,12 @@ footer{
     }
 
     .highlighted-rows tbody tr {
-        background-color: #f0f0f0; 
+        background-color: #f0f0f0;
         padding-top: 10px;
         padding-bottom: 10px;
-        background-color: #f0f0f0; /* Light grey background color */
-        padding-top: 10px; /* Adds white space above each row */
-        padding-bottom: 10px; /* Adds white space below each row */
+        background-color: #f0f0f0;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
 .custom-row {
