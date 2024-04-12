@@ -35,7 +35,7 @@ builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddSingleton<InferenceSession>(
-  new InferenceSession("fraud_onnx_model.onnx")
+    new InferenceSession("./wwwroot/fraud_onnx_model.onnx")
 );
 
 builder.Services.AddAuthentication()
