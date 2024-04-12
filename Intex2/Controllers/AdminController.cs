@@ -53,18 +53,51 @@ namespace Intex2.Controllers
 
         
         [HttpGet]
-        public IActionResult AddEditProduct(int productId)
+        public IActionResult AddProduct()
         {
-            var eplvm = new EditProductsViewModel
+            ViewBag.Categories = _repo.Categories
+                .OrderBy(x => x.CategoryName);
+
+            return View("AddEditProduct", new Product());
+        }
+
+        [HttpPost]
+        public IActionResult AddProduct(Product product)
+        {
+            if (ModelState.IsValid)
             {
-                Product = _repo.Products
-                    .Single(p => p.ProductId == productId),
+                _repo.AddProduct(product);
 
-                Categories = _repo.Categories
-                    .OrderBy(c => c.CategoryName)
-            };
+                return View("Confirmation", product);
+            }
+            else
+            {
+                ViewBag.categories = _repo.Categories
+                    .OrderBy(x => x.CategoryName);
+                
+                return View(product);
+            }
+        }
 
-            return View(eplvm);
+
+        [HttpGet]
+        public IActionResult EditProduct(int productId)
+        {
+            var productToEdit = _repo.ProductsWithoutCategory
+                .Single(x => x.ProductId == productId);
+
+            ViewBag.Categories = _repo.Categories
+                .OrderBy(x => x.CategoryName);
+
+            return View("AddEditProduct", productToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult EditProduct(Product product)
+        {
+            _repo.EditProduct(product);
+
+            return RedirectToAction("AdminProducts");
         }
 
         public IActionResult Orders(string filter, int pageNum = 1)
