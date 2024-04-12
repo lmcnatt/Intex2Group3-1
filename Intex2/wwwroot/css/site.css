@@ -309,3 +309,11 @@ footer{
         color: white; /* Set the hover text color to white */
     }
 
+.pagination-container {
+    text-align: center;
+}
+
+.page-link {
+    color: black; /* Change this to any green color you prefer */
+}
+

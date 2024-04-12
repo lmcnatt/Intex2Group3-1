@@ -37,7 +37,7 @@ namespace Intex2.Pages
                 Cart.AddItem(product, 1);
             }
             
-            return RedirectToAction("Products", "Home", new {
+            return RedirectToAction( "Products", "Home", new {
                 category = category,
                 color = color,
                 pageNum = pageNum
