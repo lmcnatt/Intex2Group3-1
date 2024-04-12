@@ -4,6 +4,7 @@ using Intex2.Models;
 using Microsoft.EntityFrameworkCore;
 using Intex2.Models.ViewModels;
 using Microsoft.CodeAnalysis.Differencing;
+using NuGet.Versioning;
 
 namespace Intex2.Controllers
 {
@@ -64,6 +65,14 @@ namespace Intex2.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
+            // Check ModelState errors
+            foreach (var state in ModelState.Values)
+            {
+                foreach (var error in state.Errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+            }
             if (ModelState.IsValid)
             {
                 _repo.AddProduct(product);
@@ -75,7 +84,9 @@ namespace Intex2.Controllers
                 ViewBag.categories = _repo.Categories
                     .OrderBy(x => x.CategoryName);
                 
-                return View(product);
+                Console.WriteLine("It didn't work");
+                
+                return View("AddEditProduct", product);
             }
         }
 
@@ -96,6 +107,17 @@ namespace Intex2.Controllers
         public IActionResult EditProduct(Product product)
         {
             _repo.EditProduct(product);
+
+            return RedirectToAction("AdminProducts");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteProduct(int productId)
+        {
+            var product = _repo.Products
+                .Single(x => x.ProductId == productId);
+            
+            _repo.DeleteProduct(product);
 
             return RedirectToAction("AdminProducts");
         }

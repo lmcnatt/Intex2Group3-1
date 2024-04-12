@@ -5,6 +5,6 @@ namespace Intex2.Models
     public class Category
     {
         [Key][Required] public int CategoryId { get; set; }
-        [Required] public string CategoryName { get; set; }
+        public string CategoryName { get; set; }
     }
 }

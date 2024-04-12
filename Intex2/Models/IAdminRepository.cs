@@ -9,5 +9,6 @@ namespace Intex2.Models
 
         void AddProduct(Product product);
         void EditProduct(Product product);
+        void DeleteProduct(Product product);
     }
 }
