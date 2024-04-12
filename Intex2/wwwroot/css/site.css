@@ -296,7 +296,16 @@ footer{
             background-color: #4176B5; /* Set the background color to blue when selected */
             color: white; /* Keep the text color white when selected */
         }
-.no-underline {
-    text-decoration: none !important;
+
+.btn-outline-secondary {
+    border-color: black; /* Set the initial outline color to black */
+    color: black; /* Set the text color to black */
 }
+
+    .btn-outline-secondary:hover,
+    .btn-outline-secondary:focus,
+    .btn-outline-secondary:active {
+        border-color: lightgray; /* Set the hover outline color to light gray */
+        color: white; /* Set the hover text color to white */
+    }
 
