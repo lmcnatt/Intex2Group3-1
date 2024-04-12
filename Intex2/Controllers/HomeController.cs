@@ -134,7 +134,7 @@ namespace Intex2.Controllers
         {
             var recommendation = _repo.Products.Where(p =>  p.ProductId == productId).FirstOrDefault();
             var recommendedProducts = new List<Product>();
-            var prodId = (int)typeof(Recommendation).GetProperty($"RedId").GetValue(recommendation);
+            var prodId = (int)typeof(Recommendation).GetProperty($"RecId").GetValue(recommendation);
             var prod1 = _repo.Products.FirstOrDefault(p => p.ProductId == prodId);
             recommendedProducts.Add(prod1);
 
@@ -154,9 +154,7 @@ namespace Intex2.Controllers
                     }
                 }
 
-                return View(recommendedProducts);
-            
-            
+                return View(recommendedProducts); 
         }
 
         public IActionResult About()

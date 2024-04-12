@@ -45,6 +45,35 @@
         </div>
     </div>
 
+    <<div class="row">
+        <div class="col-10">
+            <h2><b>Popular Picks</b></h2>
+            <p class="subtext">From fan favorites to new releases, explore our curated selection of the most sought-after LEGO sets, handpicked based on popularity and purchases.</p>
+        </div>
+        <div class="col-2">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Products">
+                <span>
+                    <h4 style="display: inline-block; margin-right: 5px;"><b>Shop More</b></h4>
+                    <i class="fas fa-arrow-right"></i>
+                </span>
+            </a>
+        </div>
+        <div class="scroll-container">
+            @foreach (var product in Model.Skip(1))
+            {
+                <div class="product-card product-card-custom-height" style="background-color:white">
+                    <a asp-controller="Home" asp-action="ProductDetails" asp-route-productId="@product.ProductId" class="mt-auto text-dark" style="align-items:center">
+                        <img src="@product.ImgLink" class="img-thumbnail rounded float-left mx-auto my-auto d-block" style="height:180px" />
+                    </a>
+                </div>
+            }
+
+            <div class="product-card product-card-custom-height" style="background-color:white; display: flex; align-items: center; justify-content: center; height: 80%;">
+                <a asp-controller="Home" asp-action="Products" class="short-pill-button wide-button">See More</a>
+            </div>
+        </div>
+    </div>
+
     <br /><br />
 
     
