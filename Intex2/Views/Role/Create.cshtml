@@ -3,13 +3,20 @@
     ViewData["Title"] = "Create Role";
 }
   
-<h1>@ViewData["Title"]</h1>
-<a asp-action="Index" class="btn btn-secondary">Back</a>
-<div asp-validation-summary="All" class="text-danger"></div>
+<h3 style="text-align: center;">@ViewData["Title"]</h3>
+<p class="subtext" style="text-align: center;">Enter the name of the role.</p>
+
+<div class="row">
+    <div class="col-1">
+        <a class="nav-link text-dark" asp-action="Index">
+            <img src="~/img/backbutton2.png" class="img-fluid rounded-corners" style="height:30px">
+        </a>
+    </div>
+</div><div asp-validation-summary="All" class="text-danger"></div>
   
 <form asp-action="Create" method="post">
     <div class="form-group">
-        <label for="name">Name:</label>
+        <label for="name"><h3>Name:</h3></label>
         <input name="name" class="form-control" />
     </div>
     <br>
