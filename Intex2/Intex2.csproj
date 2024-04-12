@@ -52,6 +52,9 @@
 
   <ItemGroup>
     <None Include="Views\Shared\AdminProductSummary.cshtml" />
+    <None Include="wwwroot\fraud_onnx_model.onnx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
