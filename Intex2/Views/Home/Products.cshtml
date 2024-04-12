@@ -9,6 +9,21 @@
     <div class="col-3">
         <h1 class="text-center">Products</h1>
         <hr />
+        <div>
+            <h5>Items Per Page</h5>
+            <form asp-action="Products" method="get" class="d-flex align-items-center">
+                <input type="hidden" name="pageNum" value="@Model.PaginationInfo.CurrentPage" />
+                <input type="hidden" name="category" value="@Model.CurrentCategory" />
+                <input type="hidden" name="color" value="@Model.CurrentColor" />
+                <select name="pageSize" class="form-select me-2">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                </select>
+                <button type="submit" class="btn btn-outline-secondary text-center">Apply</button>
+            </form>
+        </div>
+        <hr />
         <div class="d-grid gap-2">
             <a class="btn btn-outline-secondary text-center" asp-controller="Home" asp-action="Products" asp-route-category="">View All</a>
         </div>
