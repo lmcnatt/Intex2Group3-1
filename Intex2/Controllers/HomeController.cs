@@ -96,6 +96,13 @@ namespace Intex2.Controllers
         public IActionResult Products(string? category, string? color, int pageNum = 1)
         {
             int pageSize = 5;
+            int totalItems = category == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category.CategoryName == category).Count();
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            if (pageNum < 1)
+            {
+                pageNum = 1;
+            }
 
             var plvm = new ProductsListViewModel
             {
@@ -111,7 +118,8 @@ namespace Intex2.Controllers
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = category == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category.CategoryName == category).Count()
+                    TotalItems = totalItems,
+                    TotalPages = totalPages
                 },
                 CurrentCategory = category,
                 CurrentColor = color,
@@ -119,6 +127,7 @@ namespace Intex2.Controllers
 
             return View(plvm);
         }
+
 
         [Route("ProductDetails/{productId:int}")]
         public IActionResult ProductDetails(int productId)

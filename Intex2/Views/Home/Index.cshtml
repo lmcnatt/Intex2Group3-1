@@ -35,7 +35,9 @@
     <img src="~/img/newlanding-cropped.png" alt="Build, Create, Inspire" class="img-fluid" style="object-fit: cover; border-radius: 10px;">
 </div>
 
-@* Recommendations *@
+@* Recommendations 
+   These are static - should show if the user is not authenticated.
+*@
 <br /><br />
 <body>
     <div class="row">
@@ -51,7 +53,27 @@
                 </span>
             </a>
         </div>
+        <div class="scroll-container" style=>
+            @foreach (var product in Model)
+            {
+                <div class="product-card product-card-custom-height" style="background-color:white">
+                    <a asp-controller="Home" asp-action="ProductDetails" asp-route-productId="@product.ProductId" class="mt-auto text-dark" style="align-items:center">
+                        <img src="@product.ImgLink" class="img-thumbnail rounded float-left mx-auto my-auto d-block" style="height:180px" />
+                    </a>
+
+                </div>
+            }
+            <div class="product-card product-card-custom-height" style="background-color:white; display: flex; align-items: center; justify-content: center; height: 80%;">
+                <a asp-controller="Home" asp-action="Products" class="short-pill-button wide-button">See More</a>
+            </div>
+        </div>
+
+        <div>
+           
+
+        </div>
     </div>
+    <br />
     <br />
     <br />
 
@@ -64,7 +86,7 @@
                     <br /><br />
                     <h3 class="card-title">Learn More</h3>
                     <br />
-                    <p class="card-text lead">Meet the team behind the bricks—where passion for LEGO and community comes together. Learn more about us!</p>
+                    <p class="card-text lead">Meet the girl behind the bricks—where passion for LEGO and community comes together!</p>
                     <br />
                     <div class="d-grid gap-2">
                         <a asp-controller="Home" asp-action="About" class="short-pill-button" >About Us</a>
@@ -115,19 +137,29 @@
 @* Social Media Reach *@
     <div class="card-body rounded-box text-center" style="text-align: center;">
         <div class="row" style="text-align: center;">
-            <h2 style="text-align: center;">#HappyBricking</h2>
+            <h2 style="text-align: center;"><b>#HappyBricking</b></h2>
+        </div>
+            <br />
         <div class="row">
             <div class="col-3 col-lg-3 col-sm-3">
-                <img src="~/img/building2.png" class="img-fluid">
+                <a href="https://www.instagram.com/">
+                    <img src="~/img/building2.png" class="img-fluid">
+                </a>
             </div>
             <div class="col-3 col-lg-3 col-sm-3">
-                <img src="~/img/camera2.png" class="img-fluid">
+                <a href="https://www.facebook.com/">
+                    <img src="~/img/camera2.png" class="img-fluid">
+                </a>
             </div>
             <div class="col-3 col-lg-3 col-sm-3">
-                <img src="~/img/building2.png" class="img-fluid">
+                <a href="https://www.tiktok.com/">
+                    <img src="~/img/robot2.png" class="img-fluid">
+                </a>
             </div>
             <div class="col-3 col-lg-3 col-sm-3">
-                <img src="~/img/rocket2.png" class="img-fluid">
+                <a href="https://www.facebook.com/">
+                    <img src="~/img/rocket2.png" class="img-fluid">
+                </a>
             </div>
         </div>
 
@@ -138,18 +170,13 @@
                     Use the hashtag #HappyBricking for a chance to be featured!
                 </p>
         </div>
+    </div>
+        <br /><br /><br />
 </div>
 
 
-    @foreach (var product in Model)
-    {
-        <strong>Product ID:</strong> @product.ProductId
-        <br />
-        <strong>Name:</strong> @product.Name
-        <br />
-        <strong>Price:</strong> @product.Price
-        <br />
-    }
+
+    
 
 
     @{
