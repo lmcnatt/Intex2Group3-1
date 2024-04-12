@@ -30,5 +30,10 @@ namespace Intex2.Models
             _context.Update(product);
             _context.SaveChanges();
         }
+        public void DeleteProduct(Product product)
+        {
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+        }
     }
 }

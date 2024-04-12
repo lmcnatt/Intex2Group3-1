@@ -4,6 +4,7 @@ using Intex2.Models;
 using Microsoft.EntityFrameworkCore;
 using Intex2.Models.ViewModels;
 using Microsoft.CodeAnalysis.Differencing;
+using NuGet.Versioning;
 
 namespace Intex2.Controllers
 {
@@ -106,6 +107,17 @@ namespace Intex2.Controllers
         public IActionResult EditProduct(Product product)
         {
             _repo.EditProduct(product);
+
+            return RedirectToAction("AdminProducts");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteProduct(int productId)
+        {
+            var product = _repo.Products
+                .Single(x => x.ProductId == productId);
+            
+            _repo.DeleteProduct(product);
 
             return RedirectToAction("AdminProducts");
         }

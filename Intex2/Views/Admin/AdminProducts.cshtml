@@ -35,6 +35,9 @@
                         <a class="short-pill-button" asp-controller="Admin" asp-action="EditProduct" asp-route-productId="@p.ProductId" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">
                             Edit Product
                         </a>
+                        <form id="deleteProduct_@p.ProductId" action="@Url.Action("DeleteProduct", "Admin", new { productId = p.ProductId })" method="post">
+                            <button class="btn btn-danger" type="button" onclick="confirmDelete(@p.ProductId)">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -46,3 +49,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Function to confirm the user wants to delete a movie
+    function confirmDelete(productId) {
+        let confirmation = confirm("Are you sure you want to delete this product?");
+        if (confirmation) {
+            document.getElementById("deleteProduct_" + productId).submit();
+        } else {
+            // User clicked cancel, do nothing
+        }
+    }
+</script>
