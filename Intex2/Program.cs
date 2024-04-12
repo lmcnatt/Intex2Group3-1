@@ -73,6 +73,11 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.Use(async (context, next) => {
+    context.Response.Headers.Add("Content-Security-Policy-Report", "default-src 'self'; report-uri /cspreport");
+    await next();
+});
+
 
 // app.MapControllerRoute("roles", "Role", new { Controller = "Role", Action = "Index" });
 // app.MapControllerRoute("pagenumandtype", "{category}/Page{pageNum}", new { Controller = "Home", Action = "Products" });
