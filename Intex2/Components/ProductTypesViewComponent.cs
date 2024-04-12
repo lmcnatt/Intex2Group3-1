@@ -23,5 +23,6 @@ namespace Intex2.Components
 
             return View(categories);
         }
+
     }
 }
