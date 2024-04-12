@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Intex2.Infrastructure;
 using Intex2.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Drawing;
 
 namespace Intex2.Pages 
 {
@@ -26,7 +27,7 @@ namespace Intex2.Pages
             ReturnUrl = returnUrl ?? "/";
         }
 
-        public IActionResult OnPost(int productId, string category, int pageNum)
+        public IActionResult OnPost(int productId, string color, string category, int pageNum)
         {
             Product? product = _repo.Products
               .FirstOrDefault(x => x.ProductId == productId);
@@ -38,6 +39,7 @@ namespace Intex2.Pages
             
             return RedirectToAction("Products", "Home", new {
                 category = category,
+                color = color,
                 pageNum = pageNum
             });
         }
