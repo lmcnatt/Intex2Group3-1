@@ -265,3 +265,34 @@ footer{
     background-color: #EBC0C0 !important;
 }
 
+.nav-menu {
+    background-color: transparent; /* Ensure the background is transparent */
+    border-radius: 5px; /* Add rounded corners */
+    padding: 10px; /* Add some padding */
+    margin-bottom: 20px; /* Add some space below the menu */
+}
+
+.nav-menu {
+    background-color: transparent; /* Ensure the background is transparent */
+    border-radius: 5px; /* Add rounded corners */
+    padding: 10px; /* Add some padding */
+    margin-bottom: 20px; /* Add some space below the menu */
+}
+
+    .nav-menu .nav-link {
+        color: #4176B5; /* Set the text color to blue by default */
+        text-decoration: none; /* Remove underline from links */
+        padding: 10px 20px; /* Add padding to links */
+        border-radius: 5px; /* Add rounded corners to links */
+        transition: background-color 0.3s ease, color 0.3s ease; /* Smooth background and text color transition */
+    }
+
+        .nav-menu .nav-link:hover {
+            background-color: #2e5a8a; /* Darken the background color on hover */
+            color: white; /* Change text color to white on hover */
+        }
+
+        .nav-menu .nav-link.active {
+            background-color: #4176B5; /* Set the background color to blue when selected */
+            color: white; /* Keep the text color white when selected */
+        }
