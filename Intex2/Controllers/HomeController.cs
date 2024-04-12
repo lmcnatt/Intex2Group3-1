@@ -97,6 +97,11 @@ namespace Intex2.Controllers
         {
             int pageSize = 5;
 
+            if (pageNum < 1)
+            {
+                pageNum = 1;
+            }
+
             var plvm = new ProductsListViewModel
             {
                 Products = _repo.Products
