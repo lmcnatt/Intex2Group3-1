@@ -17,8 +17,11 @@ namespace Intex2.Components
             ViewBag.SelectedCategory = RouteData?.Values["Category"];
 
             // Assuming _repo.Categories is of type DbSet<Category>
-            var categories = _repo.Categories.Select(c => c.CategoryName).AsEnumerable(); // Adjust this line based on your Category model
+            var categories = _repo.Categories.
+            Select(c => c.CategoryName)
+            .AsEnumerable(); // Adjust this line based on your Category model
 
+            
             return View(categories);
         }
 

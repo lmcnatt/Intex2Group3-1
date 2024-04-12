@@ -93,15 +93,17 @@ namespace Intex2.Controllers
             ;
         }
 
-        public IActionResult Products(string? category, int pageNum = 1)
+        public IActionResult Products(string? category, string? color, int pageNum = 1)
         {
             int pageSize = 5;
 
             var plvm = new ProductsListViewModel
             {
                 Products = _repo.Products
-                    .Where(x => x.Category.CategoryName == category)
+                    .Where(x=> ( category == null || x.Category.CategoryName == category) && 
+                    (color == null || x.PrimaryColor == color || x.SecondaryColor == color))
                     .OrderBy(x => x.Name)
+                    .ThenBy(x => x.PrimaryColor)
                     .Skip((pageNum - 1) * pageSize)
                     .Take(pageSize),
 
@@ -111,7 +113,8 @@ namespace Intex2.Controllers
                     ItemsPerPage = pageSize,
                     TotalItems = category == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category.CategoryName == category).Count()
                 },
-                CurrentCategory = category
+                CurrentCategory = category,
+                CurrentColor = color,
             };
 
             return View(plvm);
