@@ -32,7 +32,7 @@ namespace Intex2.Models
 
         public virtual void Clear() => Lines.Clear();
 
-        public decimal CalculateTotal() => Lines.Sum(x => x.Product.Price * x.Quantity);
+        public int CalculateTotal() => Lines.Sum(x => x.Product.Price * x.Quantity);
 
         public int TotalLineItems() => Lines.Count();
 
