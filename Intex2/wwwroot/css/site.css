@@ -265,3 +265,7 @@ footer{
     background-color: #EBC0C0 !important;
 }
 
+.no-underline {
+    text-decoration: none !important;
+}
+
