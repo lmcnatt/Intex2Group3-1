@@ -27,7 +27,7 @@
             </td>
             <td class="center-button">
                 <form asp-action="Delete" asp-route-id="@role.Id" method="post">
-                    <button type="submit" class="red-pill-button">
+                    <button type="submit" class="red-pill-button" onclick="return confirm('Are you sure you want to delete @role.Name?');">
                         Delete
                     </button>
                 </form>
