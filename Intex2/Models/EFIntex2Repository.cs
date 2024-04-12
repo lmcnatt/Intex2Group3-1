@@ -39,57 +39,28 @@ namespace Intex2.Models
         {
             return _context.Recommendations.FirstOrDefault(r => r.RecId == id);
         }
-        // public IQueryable<Customer> CustomerOrders =>
-        //  (IQueryable<Customer>)_context.Customers
-        //     .Include(c => c.Orders)
-        //     .ThenInclude(o => o.Lines)
-        //     .Select(c => new Customer{ 
-        //         CustomerId = c.CustomerId, 
-        //         FirstName = c.FirstName,
-        //         LastName = c.LastName,
-        //         BirthDate = c.BirthDate,
-        //         CountryOfResidence = c.CountryOfResidence,
-        //         Gender = c.Gender,
-        //         Age = c.Age, 
-        //         Orders = (ICollection<Order>)c.Orders.Select(o => new Order
-        //                                 {
-        //                                     OrderID = o.OrderID,
-        //                                     CountryOfTransaction = o.CountryOfTransaction,
-        //                                     Date = o.Date,
-        //                                     DayOfWeek = o.DayOfWeek,
-        //                                     Time = o.Time,
-        //                                     EntryMode = o.EntryMode,
-        //                                     Amount = o.Amount,
-        //                                     TypeOfTransaction = o.TypeOfTransaction,
-        //                                     ShippingAddress = o.ShippingAddress,
-        //                                     City = o.City,
-        //                                     State = o.State,
-        //                                     Zip = o.Zip,
-        //                                     ShippingCountry = o.ShippingCountry,
-        //                                     Bank = o.Bank,
-        //                                     TypeOfCard = o.TypeOfCard,
-        //                                     Fraud = o.Fraud,
-        //                                     Lines = (ICollection<Cart.CartLine>)o.Lines.Select(cl => new Cart.CartLine
-        //                                                             {
-        //                                                                 Quantity = cl.Quantity,
-        //                                                                 Rating = cl.Rating
-        //                                                             })
+        
 
-        //                                 })
-        //         })
-        //     .FirstOrDefault();
-        // public int GetMostPurchased(string userId)
-        // {
-        //     var mostPurchasedProductId = _context.CustomerOrders
-        //         .Where(c => c.CustomerId == userId)
-        //         .SelectMany(c => c.Orders.SelectMany(o => o.Lines)) // Flatten Orders and Lines
-        //         .GroupBy(cl => cl.Product.ProductId) // Group by ProductId
-        //         .OrderByDescending(g => g.Sum(cl => cl.Quantity)) // Order by the sum of Quantity
-        //         .Select(g => g.Key) // Select the ProductId
-        //         .FirstOrDefault(); // Get the first ProductId
+        public int? GetMostPurchased (string userId)
+        {
+            var mostPurchasedProductId = _context.Orders
+                .Where(o => o.CustomerId == userId) // Filter orders by userId
+                .SelectMany(o => o.Lines) // Flatten the collection of CartLines from all orders
+                .GroupBy(cl => cl.Product.ProductId) // Group by ProductId
+                .Select(g => new { ProductId = g.Key, TotalQuantity = g.Sum(cl => cl.Quantity) }) // Select ProductId and sum of quantities
+                .OrderByDescending(g => g.TotalQuantity) // Order by total quantity in descending order
+                .FirstOrDefault()?.ProductId; // Get the ProductId of the most purchased item
+                if (mostPurchasedProductId == null)
+                {
+                    return 0;
+                }
+                else{
+                    return mostPurchasedProductId;
+                }
 
-        //     return mostPurchasedProductId;
-        // }
+            
+        }
+        
 
     }
 }
