@@ -82,8 +82,13 @@
                         </div>
                         <br />
                         <div class="row">
-                            <div class="col-12 text-center">
+                            <div class="col-6 text-center">
                                 <a asp-controller="Admin" asp-action="EditProduct" asp-route-productId="@p.ProductId" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()" class="btn btn-primary blue-pill-button w-100">Edit Product</a>
+                            </div>
+                            <div class="col-6 text-center">
+                                <form id="deleteProduct_@p.ProductId" action="@Url.Action("DeleteProduct", "Admin", new { productId = p.ProductId })" method="post">
+                                    <button class="btn btn-primary red-pill-button w-100" type="button" onclick="confirmDelete(@p.ProductId)">Delete</button>
+                                </form>
                             </div>
                         </div>
                     </div>
