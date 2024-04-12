@@ -32,8 +32,6 @@ namespace Intex2.Controllers
 
         public IActionResult Index()
         {
-            // if static (id = 0) then populate top 10
-            // else (id = form input)
             int id = 0;
 
             // if (User.Identity.IsAuthenticated)
@@ -45,16 +43,26 @@ namespace Intex2.Controllers
             if (id != 0)
             {
                 // Assuming _repo.Recommendations is a DbSet or similar that allows querying
-                var recommendation = _repo.Recommendations.FirstOrDefault(r => r.RecId == id);
-
-                // Prepare a list to hold the recommended products
+                 var recommendation = _repo.Recommendations.Where(p =>  p.RecId == id).FirstOrDefault();
                 var recommendedProducts = new List<Product>();
 
                 // Loop through each recommendation column (rec1 to rec10)
-                for (int i = 1; i <= 10; i++)
+                for (int i = 0; i <= 10; i++)
                 {
+                    var recId = 0;
+                    if (i == 0){recId = recommendation.RecId;}
+                    else if (i == 1){recId = recommendation.Rec1;}
+                    else if (i == 2){recId = recommendation.Rec2;}
+                    else if (i == 3){recId = recommendation.Rec3;}
+                    else if (i == 4){recId = recommendation.Rec4;}
+                    else if (i == 5){recId = recommendation.Rec5;}
+                    else if (i == 6){recId = recommendation.Rec6;}
+                    else if (i == 7){recId = recommendation.Rec7;}
+                    else if (i == 8){recId = recommendation.Rec8;}
+                    else if (i == 9){recId = recommendation.Rec9;}
+                    else if (i == 10){recId = recommendation.Rec10;}
                     // Retrieve the product ID for the current recommendation column
-                    var recId = (int)typeof(Recommendation).GetProperty($"Rec{i}").GetValue(recommendation);
+                    
 
                     // Retrieve the product details for the current recommendation ID
                     var product = _repo.Products.FirstOrDefault(p => p.ProductId == recId);
@@ -65,6 +73,7 @@ namespace Intex2.Controllers
                         recommendedProducts.Add(product);
                     }
                 }
+
 
                 return View(recommendedProducts);
             }
@@ -132,17 +141,26 @@ namespace Intex2.Controllers
         [Route("ProductDetails/{productId:int}")]
         public IActionResult ProductDetails(int productId)
         {
-            var recommendation = _repo.Products.Where(p =>  p.ProductId == productId).FirstOrDefault();
+            var recommendation = _repo.Recommendations.Where(p =>  p.RecId == productId).FirstOrDefault();
             var recommendedProducts = new List<Product>();
-            var prodId = (int)typeof(Recommendation).GetProperty($"RecId").GetValue(recommendation);
-            var prod1 = _repo.Products.FirstOrDefault(p => p.ProductId == prodId);
-            recommendedProducts.Add(prod1);
 
                 // Loop through each recommendation column (rec1 to rec10)
-                for (int i = 1; i <= 10; i++)
+                for (int i = 0; i <= 10; i++)
                 {
+                    var recId = 0;
+                    if (i == 0){recId = recommendation.RecId;}
+                    else if (i == 1){recId = recommendation.Rec1;}
+                    else if (i == 2){recId = recommendation.Rec2;}
+                    else if (i == 3){recId = recommendation.Rec3;}
+                    else if (i == 4){recId = recommendation.Rec4;}
+                    else if (i == 5){recId = recommendation.Rec5;}
+                    else if (i == 6){recId = recommendation.Rec6;}
+                    else if (i == 7){recId = recommendation.Rec7;}
+                    else if (i == 8){recId = recommendation.Rec8;}
+                    else if (i == 9){recId = recommendation.Rec9;}
+                    else if (i == 10){recId = recommendation.Rec10;}
                     // Retrieve the product ID for the current recommendation column
-                    var recId = (int)typeof(Recommendation).GetProperty($"Rec{i}").GetValue(recommendation);
+                    
 
                     // Retrieve the product details for the current recommendation ID
                     var product = _repo.Products.FirstOrDefault(p => p.ProductId == recId);

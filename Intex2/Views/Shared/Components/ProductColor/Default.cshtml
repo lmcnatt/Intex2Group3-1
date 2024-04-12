@@ -5,7 +5,7 @@
     @foreach (string c in Model ?? Enumerable.Empty<string>())
     {
         
-            <a class="btn @(c == ViewBag.SelectedColor ? "btn-primary" : "btn-outline-secondary")" asp-controller="Home" asp-action="Products" asp-route-color="@c" asp-route-pageNum="1" style="width:132px">@c</a>
+        <a class="btn @(c == ViewBag.SelectedColor ? "btn-primary" : "btn-outline-secondary")" asp-controller="Home" asp-action="Products" asp-route-color="@c" asp-route-pageNum="1" style="width:132px">@c</a>
         
     }
 </div>

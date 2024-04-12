@@ -50,6 +50,8 @@ namespace Intex2.Controllers
 
             return View(plvm);
         }
+
+        
         [HttpGet]
         public IActionResult AddEditProduct(int productId)
         {
